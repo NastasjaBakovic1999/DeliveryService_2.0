@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TG9tWULF5/NJrlR1+uGaFd3kSzi0rmDTKVIlHq0s7i0LMV49qxsrBUB844sM7N3jAG447wEIEBPm6HFJJYCenQ==",
+  "dgSpecHash": "cddYTpP61G+YBQJk1azfjsBPXDS9zAH3hDDz5zhIhevWgxbfSphsLXH4D1L1G6COIb79Teze6Kp3bcAYQR+nCg==",
   "success": true,
-  "projectFilePath": "G:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
+  "projectFilePath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.15\\microsoft.aspnetcore.cryptography.internal.5.0.15.nupkg.sha512",

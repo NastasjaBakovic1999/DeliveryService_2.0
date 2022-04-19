@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iikmZUE9qCyzsOFtPqquGScLX4rosq/vHm1aRnN5YOAxKCkGPGwR8TD1z6/fAblaStIpTL3NbsuSjIkIjDyJFA==",
+  "dgSpecHash": "1i6jYgYoVbPNeHS55Xrm3ye61sutyL51X5eHCz4lNpHkzWbJRtj/uqNq7+RxjUbeJsPucMivUXsB2tcxqdWLgA==",
   "success": true,
-  "projectFilePath": "G:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceData\\DeliveryServiceData.csproj",
+  "projectFilePath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.14\\microsoft.aspnetcore.cryptography.internal.5.0.14.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.14\\microsoft.aspnetcore.cryptography.keyderivation.5.0.14.nupkg.sha512",

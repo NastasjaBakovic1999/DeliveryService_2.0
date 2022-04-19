@@ -7496,11 +7496,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
+      "projectUniqueName": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
       "projectName": "DeliveryServiceApp",
-      "projectPath": "G:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
+      "projectPath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "G:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceApp\\obj\\",
+      "outputPath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7517,8 +7517,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "G:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceData\\DeliveryServiceData.csproj": {
-              "projectPath": "G:\\NapredneDotNetProjekat\\DeliveryServiceProject\\DeliveryServiceData\\DeliveryServiceData.csproj"
+            "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj": {
+              "projectPath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj"
             }
           }
         }
