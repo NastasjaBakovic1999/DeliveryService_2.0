@@ -1,26 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj": {}
+    "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj": {}
   },
   "projects": {
-    "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj": {
+    "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
+        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
         "projectName": "DeliveryServiceApp",
-        "projectPath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceApp\\obj\\",
+        "projectPath": "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceApp\\DeliveryServiceApp.csproj",
+        "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Luka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -28,8 +34,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj": {
-                "projectPath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj"
+              "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceData\\DeliveryServiceData.csproj": {
+                "projectPath": "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceData\\DeliveryServiceData.csproj"
               }
             }
           }
@@ -89,27 +95,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj": {
+    "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceData\\DeliveryServiceData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj",
+        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceData\\DeliveryServiceData.csproj",
         "projectName": "DeliveryServiceData",
-        "projectPath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceData\\DeliveryServiceData.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceData\\obj\\",
+        "projectPath": "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceData\\DeliveryServiceData.csproj",
+        "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceData\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Luka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -117,8 +129,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
-                "projectPath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj"
+              "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
+                "projectPath": "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj"
               }
             }
           }
@@ -147,27 +159,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
+    "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
+        "projectUniqueName": "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
         "projectName": "DeliveryServiceDomain",
-        "projectPath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "G:\\NaprednoProgramiranje\\DeliveryService\\DeliveryServiceDomain\\obj\\",
+        "projectPath": "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceDomain\\DeliveryServiceDomain.csproj",
+        "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luka\\Desktop\\np\\DeliveryService_2.0\\DeliveryServiceDomain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Luka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -229,7 +247,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
