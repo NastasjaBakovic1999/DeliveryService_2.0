@@ -8,6 +8,21 @@ namespace DeliveryServiceDomain
 {
     public class Deliverer : Person
     {
-        public DateTime DateOfEmployment { get; set; }
+        private DateTime DateOfEmployment { get; set; }
+
+        public DateTime GetDateOfEmployment()
+        {
+            return DateOfEmployment;
+        }
+
+        public void SetDateOfEmployment(DateTime doe)
+        {
+            if(doe > DateTime.Now)
+            {
+                throw new ArgumentOutOfRangeException("Date Of Employment cannot be in the future!");
+            }
+
+            DateOfEmployment = doe;
+        }
     }
 }
