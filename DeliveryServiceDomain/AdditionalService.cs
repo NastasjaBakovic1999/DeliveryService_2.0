@@ -8,10 +8,10 @@ namespace DeliveryServiceDomain
 {
     public class AdditionalService
     {
-        private int AdditionalServiceId { get; set; }
-        private string AdditionalServiceName { get; set; }
-        private double AdditionalServicePrice { get; set; }
-        private List<AdditionalServiceShipment> Shipments { get; set; }
+        public int AdditionalServiceId { get; set; }
+        public string AdditionalServiceName { get; set; }
+        public double AdditionalServicePrice { get; set; }
+        public List<AdditionalServiceShipment> Shipments { get; set; }
 
         public int GetAdditionalServiceId()
         {

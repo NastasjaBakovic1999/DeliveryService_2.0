@@ -9,8 +9,8 @@ namespace DeliveryServiceDomain
 {
     public class Person : IdentityUser<int>
     {
-        private string FirstName { get; set; }
-        private string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         public string GetFirstName()
         {

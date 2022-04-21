@@ -8,10 +8,10 @@ namespace DeliveryServiceDomain
 {
     public class ShipmentWeight
     {
-        private int ShipmentWeightId { get; set; }
-        private string ShipmentWeightDescpription { get; set; }
-        private double ShipmentWeightPrice { get; set; }
-        private List<Shipment> Shipments { get; set; }
+        public int ShipmentWeightId { get; set; }
+        public string ShipmentWeightDescpription { get; set; }
+        public double ShipmentWeightPrice { get; set; }
+        public List<Shipment> Shipments { get; set; }
 
         public int GetShipmentWeightId()
         {

@@ -6,8 +6,8 @@ namespace DeliveryServiceDomain
 {
     public class Customer : Person
     {
-        private string Address { get; set; }
-        private string PostalCode { get; set; }
+        public string Address { get; set; }
+        public string PostalCode { get; set; }
 
         public string GetAddress()
         {

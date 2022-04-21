@@ -8,27 +8,27 @@ namespace DeliveryServiceDomain
 {
     public class Shipment
     {
-        private int ShipmentWeightId { get; set; }
-        private int ShipmentId { get; set; }
-        private string ShipmentCode { get; set; }
-        private ShipmentWeight ShipmentWeight { get; set; }
-        private string ShipmentContent { get; set; }
-        private string SendingCity { get; set; }
-        private string SendingAddress { get; set; }
-        private string SendingPostalCode { get; set; }
-        private string ReceivingCity { get; set; }
-        private string ReceivingAddress { get; set; }
-        private string ReceivingPostalCode { get; set; }
-        private string ContactPersonName { get; set; }
-        private string ContactPersonPhone { get; set; }
-        private int CustomerId { get; set; }
-        private Customer Customer { get; set; }
-        private int DelivererId { get; set; }
-        private Deliverer Deliverer { get; set; }
-        private double Price { get; set; }
-        private List<AdditionalServiceShipment> AdditionalServices { get; set; }
-        private List<StatusShipment> ShipmentStatuses { get; set; }
-        private string Note { get; set; }
+        public int ShipmentWeightId { get; set; }
+        public int ShipmentId { get; set; }
+        public string ShipmentCode { get; set; }
+        public ShipmentWeight ShipmentWeight { get; set; }
+        public string ShipmentContent { get; set; }
+        public string SendingCity { get; set; }
+        public string SendingAddress { get; set; }
+        public string SendingPostalCode { get; set; }
+        public string ReceivingCity { get; set; }
+        public string ReceivingAddress { get; set; }
+        public string ReceivingPostalCode { get; set; }
+        public string ContactPersonName { get; set; }
+        public string ContactPersonPhone { get; set; }
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
+        public int DelivererId { get; set; }
+        public Deliverer Deliverer { get; set; }
+        public double Price { get; set; }
+        public List<AdditionalServiceShipment> AdditionalServices { get; set; }
+        public List<StatusShipment> ShipmentStatuses { get; set; }
+        public string Note { get; set; }
 
         public int GetShipmentWeightId()
         {

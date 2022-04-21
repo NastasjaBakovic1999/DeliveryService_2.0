@@ -8,11 +8,11 @@ namespace DeliveryServiceDomain
 {
     public class StatusShipment
     {
-        private int StatusId { get; set; }
-        private Status Status { get; set; }
-        private int ShipmentId { get; set; }
-        private Shipment Shipment { get; set; }
-        private DateTime StatusTime { get; set; }
+        public int StatusId { get; set; }
+        public Status Status { get; set; }
+        public int ShipmentId { get; set; }
+        public Shipment Shipment { get; set; }
+        public DateTime StatusTime { get; set; }
 
         public int GetStatusId()
         {

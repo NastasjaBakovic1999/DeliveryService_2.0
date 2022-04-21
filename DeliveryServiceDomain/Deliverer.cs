@@ -8,7 +8,7 @@ namespace DeliveryServiceDomain
 {
     public class Deliverer : Person
     {
-        private DateTime DateOfEmployment { get; set; }
+        public DateTime DateOfEmployment { get; set; }
 
         public DateTime GetDateOfEmployment()
         {
