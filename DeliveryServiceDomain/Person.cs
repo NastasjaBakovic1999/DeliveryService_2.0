@@ -7,16 +7,56 @@ using System.Threading.Tasks;
 
 namespace DeliveryServiceDomain
 {
+    /// <summary>
+    ///     Klasa koja predstavlja osobu
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    ///     Ova klasa predstavlja nadtip klasama koje je <br />
+    ///     nasledjuju i prosiruju. 
+    /// </para>
+    /// <para>
+    ///     Sama klasa Person nasledjuje i prosiruje klasu <seealso cref="IdentityUser"/>. <br />
+    ///     <seealso href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityuser?view=aspnetcore-1.1">Vise o klasi IdentityUser i ostalim klasama Identity namespace-a</seealso>
+    /// </para>
+    /// </remarks>
     public class Person : IdentityUser<int>
     {
+        /// <value>
+        ///     Ime osobe
+        /// </value>
         public string FirstName { get; set; }
+
+        /// <value>
+        ///     Prezime osobe
+        /// </value>
         public string LastName { get; set; }
 
+        /// <summary>
+        ///     Funkcija koja vraca vrednost atributa FirstName
+        /// </summary>
+        /// <returns>Ime osobe</returns>
         public string GetFirstName()
         {
             return FirstName;
         }
 
+        /// <summary>
+        ///     Funkcija koja postavlja vrednost atributa FirstName
+        ///      <list type="bullet">
+        ///         <item>
+        ///             <term>Ukoliko je prosledjeno ime null</term>
+        ///             <description>Funkcija baca <see cref="ArgumentNullException"/> gresku.</description>
+        ///         </item>
+        ///         <item>
+        ///             <term>Ukoliko je prosledjeno ime prazan string</term>
+        ///             <description>Funkcija baca <see cref="ArgumentException"/> gresku.</description>
+        ///         </item>
+        ///     </list>
+        /// </summary>
+        /// <param name="fName"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public void SetFirstName(string fName)
         {
             if (fName == null)
@@ -32,11 +72,31 @@ namespace DeliveryServiceDomain
             FirstName = fName;
         }
 
+        /// <summary>
+        ///     Funkcija koja vraca vrednost atributa LastName
+        /// </summary>
+        /// <returns>Prezime osobe</returns>
         public string GetLastName()
         {
             return FirstName;
         }
 
+        /// <summary>
+        ///     Funkcija koja postavlja vrednost atributa LastName
+        ///      <list type="bullet">
+        ///         <item>
+        ///             <term>Ukoliko je prosledjeno prezime null</term>
+        ///             <description>Funkcija baca <see cref="ArgumentNullException"/> gresku.</description>
+        ///         </item>
+        ///         <item>
+        ///             <term>Ukoliko je prosledjeno prezime prazan string</term>
+        ///             <description>Funkcija baca <see cref="ArgumentException"/> gresku.</description>
+        ///         </item>
+        ///     </list>
+        /// </summary>
+        /// <param name="lName"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public void SetLastName(string lName)
         {
             if (lName == null)
