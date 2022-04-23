@@ -142,7 +142,7 @@ namespace DeliveryServiceDomain
         /// <remarks>
         ///     Objekat predstavlja posiljku kojoj se dodeljuje dodatna usluga
         /// </remarks>
-        /// <returns>Objekat klase</returns>
+        /// <returns>Objekat klase Shipment</returns>
         public Shipment GetShipment()
         {
             return Shipment;
