@@ -6,17 +6,54 @@ using System.Threading.Tasks;
 
 namespace DeliveryServiceDomain
 {
+    /// <summary>
+    ///     Klasa koja predstavlja status posiljke
+    /// </summary>
     public class Status
     {
+        /// <value>
+        ///     Id objekta klase Status
+        /// </value>
         public int StatusId { get; set; }
+        /// <value>
+        ///    Naziv tj opis statusa posiljke
+        /// </value>
         public string StatusName { get; set; }
+        /// <value>
+        ///     Lista objekata agregirane klase StatusShipment
+        /// </value>
+        /// <remarks>
+        ///     <para>
+        ///         Ova lista predstavlja pomocnu strukturu <br />
+        ///         jer definise parove posiljaka i statuse koje se odnose <br />
+        ///         na tu posiljku. 
+        ///     </para>
+        ///     <para>
+        ///         Olaksava mapiranje ORM alatima i rad sa objektima u kontroleru.
+        ///     </para>
+        /// </remarks>
         public List<StatusShipment> Shipments { get; set; }
 
+        /// <summary>
+        ///     Funkcija koja vraca Id objekta klase Status
+        /// </summary>
+        /// <returns>Id objekta</returns>
         public int GetStatusId()
         {
             return StatusId;
         }
 
+        /// <summary>
+        ///     Funkcija koja postavlja Id objekta klase Status
+        ///     <list type="bullet">
+        ///         <item>
+        ///             <term>Ukoliko je prosledjeni id manji ili jednak 0 </term>
+        ///             <description>Funkcija baca <see cref="ArgumentOutOfRangeException"/> gresku.</description>
+        ///         </item>
+        ///     </list>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetStatusId(int id)
         {
             if (id <= 0)
@@ -27,16 +64,31 @@ namespace DeliveryServiceDomain
             StatusId = id;
         }
 
+        /// <summary>
+        ///     Funkcija koja vraca vrednost atributa StatusName
+        /// </summary>
+        /// <returns>Naziv statusa</returns>
         public string GetStatusName()
         {
-            if (StatusName == null)
-            {
-                throw new NullReferenceException("Status Name is null!");
-            }
-
             return StatusName;
         }
 
+        /// <summary>
+        ///     Funkcija koja postavlja vrednost atributa StatusName
+        ///       <list type="bullet">
+        ///         <item>
+        ///             <term>Ukoliko je prosledjeni naziv null</term>
+        ///             <description>Funkcija baca <see cref="ArgumentNullException"/> gresku.</description>
+        ///         </item>
+        ///         <item>
+        ///             <term>Ukoliko je prosledjeni naziv prazan string</term>
+        ///             <description>Funkcija baca <see cref="ArgumentException"/> gresku.</description>
+        ///         </item>
+        ///     </list>
+        /// </summary>
+        /// <param name="status"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public void SetStatusName(string status)
         {
             if (status == null)
@@ -50,6 +102,63 @@ namespace DeliveryServiceDomain
             }
 
             StatusName = status;
+        }
+
+        /// <summary>
+        ///     Funkcija koja vraca vrednost reference <br />
+        ///     na listu objekata klase StatusShipment
+        ///       <list type="bullet">
+        ///         <item>
+        ///             <term>Ukoliko je referenca na listu objekata null</term>
+        ///             <description>Funkcija baca <see cref="NullReferenceException"/> gresku.</description>
+        ///         </item>
+        ///       </list>
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NullReferenceException"></exception>
+        public List<StatusShipment> GetShipmentStatuses()
+        {
+            if (Shipments == null)
+            {
+                throw new NullReferenceException("Shipment Statuses is null!");
+            }
+
+            return Shipments;
+        }
+
+        /// <summary>
+        ///     Funkcija koja postavlja vrednost reference <br />
+        ///     na listu objekata klase StatusShipment
+        ///       <list type="bullet">
+        ///         <item>
+        ///             <term>Ukoliko je referenca na listu objekata null</term>
+        ///             <description>Funkcija baca <see cref="ArgumentNullException"/> gresku.</description>
+        ///         </item>
+        ///          <item>
+        ///             <term>Ukoliko postojeca lista objekata sadrzi neki objekat prosledjene liste</term>
+        ///             <description>Funkcija baca <see cref="ArgumentException"/> gresku.</description>
+        ///         </item>
+        ///       </list>
+        /// </summary>
+        /// <param name="addss"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        public void SetAdShipmentStatuses(List<StatusShipment> ss)
+        {
+            if (ss == null)
+            {
+                throw new ArgumentNullException("Argument cannot be null!");
+            }
+
+            foreach (StatusShipment statusShipment in ss)
+            {
+                if (Shipments.Contains(statusShipment))
+                {
+                    throw new ArgumentException("Status shipments list already contains some of the forwarded objects!");
+                }
+            }
+
+            Shipments.AddRange(ss);
         }
     }
 }
