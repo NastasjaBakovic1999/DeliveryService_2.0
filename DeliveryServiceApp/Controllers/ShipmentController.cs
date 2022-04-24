@@ -433,7 +433,7 @@ namespace DeliveryServiceApp.Controllers
         }
 
         /// <summary>
-        ///    Post metoda koja cuva podatke o dodatom statusu posiljke i redirektuje <br />
+        ///    Post akcija koja cuva podatke o dodatom statusu posiljke i redirektuje <br />
         ///    na putanju AllShipments akcije istog kontrolera.
         /// </summary>
         /// <param name="id">Id posiljke ciji se status menja</param>
