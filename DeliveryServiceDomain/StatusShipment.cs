@@ -65,7 +65,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id objekta</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetStatusId(int id)
         {
@@ -95,7 +95,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">ID obejkta</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetShipmentId(int id)
         {
@@ -133,7 +133,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="status"></param>
+        /// <param name="status">Status koji se pridruzuje odredjenoj posiljci</param>
         /// <exception cref="ArgumentNullException"></exception>
         public void SetStatus(Status status)
         {
@@ -167,7 +167,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="shipment"></param>
+        /// <param name="shipment">Posiljka kojoj se dodeljuje odredjeni status</param>
         /// <exception cref="ArgumentNullException"></exception>
         public void SetShipment(Shipment shipment)
         {
@@ -197,7 +197,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="dt"></param>
+        /// <param name="dt">Vreme kada se posiljka nasla u nekom statusu</param>
         /// <exception cref="ArgumentException"></exception>
         public void SetStatusTime(DateTime dt)
         {

@@ -155,7 +155,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id objekta</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetShipmentWeightId(int id)
         {
@@ -185,7 +185,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id objekta</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetShipmentId(int id)
         {
@@ -220,7 +220,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="code"></param>
+        /// <param name="code">Jedinstveni kod posiljke</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetShipmentCode(string code)
@@ -260,7 +260,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="content"></param>
+        /// <param name="content">Sadrzaj posiljke</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetShipmentContent(string content)
@@ -300,7 +300,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="sCity"></param>
+        /// <param name="sCity">Grad posiljaoca</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetSendingCity(string sCity)
@@ -345,7 +345,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="sAddress"></param>
+        /// <param name="sAddress">Adresa posiljaoca</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetSendingAddress(string sAddress)
@@ -385,7 +385,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="code"></param>
+        /// <param name="code">Postanski kod posiljaoca</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetSendingPostalCode(string code)
@@ -430,7 +430,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="sCity"></param>
+        /// <param name="rCity">Grad primaoca</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetReceivingCity(string rCity)
@@ -475,7 +475,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="sAddress"></param>
+        /// <param name="rAddress">Adresa primaoca</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetReceivingAddress(string rAddress)
@@ -520,7 +520,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="code"></param>
+        /// <param name="code">Postanski kod primaoca</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetReceivingPostalCode(string code)
@@ -560,7 +560,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Ime kontakt osobe</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetContactPersonName(string name)
@@ -600,7 +600,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="phone"></param>
+        /// <param name="phone">Broj telefona kontakt osobe</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetContactPersonPhone(string phone)
@@ -640,7 +640,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="note"></param>
+        /// <param name="note">Napomena uz posiljku</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetNote(string note)
@@ -676,7 +676,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id objekta</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetCustomerId(int id)
         {
@@ -706,7 +706,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id objekta</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetDelivererId(int id)
         {
@@ -750,7 +750,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///       </list>
         /// </summary>
-        /// <param name="sw"></param>
+        /// <param name="sw">Tezina posiljke</param>
         /// <exception cref="ArgumentNullException"></exception>
         public void SetShipmentWeight(ShipmentWeight sw)
         {
@@ -794,7 +794,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///       </list>
         /// </summary>
-        /// <param name="customer"></param>
+        /// <param name="customer">Kupac koji narucuje posiljku</param>
         /// <exception cref="ArgumentNullException"></exception>
         public void SetCustomer(Customer customer)
         {
@@ -838,7 +838,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///       </list>
         /// </summary>
-        /// <param name="deliverer"></param>
+        /// <param name="deliverer">Dostavljac koji je zaduzen za posiljku</param>
         /// <exception cref="ArgumentNullException"></exception>
         public void SetDeliverer(Deliverer deliverer)
         {
@@ -887,7 +887,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///       </list>
         /// </summary>
-        /// <param name="addss"></param>
+        /// <param name="addss">Lista posiljaka i njihovih dodatnih usluga</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetAdditionalServices(List<AdditionalServiceShipment> addss)
@@ -945,7 +945,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///       </list>
         /// </summary>
-        /// <param name="addss"></param>
+        /// <param name="addss">Lista posiljaka i njihovih statusa</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetAdShipmentStatuses(List<StatusShipment> ss)
@@ -984,7 +984,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="price"></param>
+        /// <param name="price">Cena posiljke</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetPrice(double price)
         {

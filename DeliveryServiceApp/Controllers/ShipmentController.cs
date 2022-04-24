@@ -70,11 +70,10 @@ namespace DeliveryServiceApp.Controllers
         private readonly UserManager<Person> userManager;
 
         /// <summary>
-        ///     Konstruktor koji vrsi dependency injection interfejsa <seealso cref="IUnitOfWork"/> i <seealso cref="SignInManager"/> <br />
-        ///     u klasu <see cref="ShipmentController"/>
+        ///     Konstruktor koji vrsi dependency injection
         /// </summary>
-        /// <param name="unitOfWork"></param>
-        /// <param name="userManager"></param>
+        /// <param name="unitOfWork">Interfejs <seealso cref="IUnitOfWork"/></param>
+        /// <param name="userManager">Klasa <seealso cref="SignInManager{TUser}"/></param>
         public ShipmentController(IUnitOfWork unitOfWork, UserManager<Person> userManager)
         {
             this.unitOfWork = unitOfWork;
@@ -143,7 +142,7 @@ namespace DeliveryServiceApp.Controllers
         ///         dostavu posiljke.
         ///     </para>
         /// </remarks>
-        /// <param name="model"></param>
+        /// <param name="model">Model <seealso cref="CreateShipmentViewModel"/> koji sadrzi unete podatke o posiljci</param>
         [HttpPost]
         [Authorize(Roles = "Customer")]
         public IActionResult Create(CreateShipmentViewModel model)
@@ -362,7 +361,7 @@ namespace DeliveryServiceApp.Controllers
         ///         informacije o posiljci.
         ///     </para>
         /// </remarks>
-        /// <param name="model"></param>
+        /// <param name="model">Model <seealso cref="ShipmentMonitoringViewModel"/> koji sadrzi jedinstveni kod posiljke unet od strane korisnika sistema</param>
         [HttpPost]
         public IActionResult ShipmentMonitoring(ShipmentMonitoringViewModel model)
         {
