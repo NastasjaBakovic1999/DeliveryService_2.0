@@ -41,7 +41,7 @@ namespace DeliveryServiceDomain
         /// <summary>
         ///     Funkcija vraca Id objekta klase AdditonalService
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Id objekta</returns>
         public int GetAdditionalServiceId()
         {
             return AdditionalServiceId;
