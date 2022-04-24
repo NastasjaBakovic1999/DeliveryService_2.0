@@ -37,7 +37,7 @@ namespace DeliveryServiceApp.Controllers
         ///         datog softverskog sistema, to je klasa <see cref="Person"/>.
         ///     </para>
         ///     <para>
-        ///         UserMaanger klasa omogucava koriscenje build-in metoda za manipulaciju <br />
+        ///         UserMananger klasa omogucava koriscenje build-in metoda za manipulaciju <br />
         ///         nad klasom koja je referencirana kao parametar tipa. <br />
         ///         <see href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.usermanager-1?view=aspnetcore-6.0">
         ///             Vise informacija o klasi UserManager
@@ -70,7 +70,7 @@ namespace DeliveryServiceApp.Controllers
         private readonly SignInManager<Person> signInManager;
 
         /// <summary>
-        ///     Konstruktor koji vrsi dependency injection klasa UserManager i SignInManager <br />
+        ///     Konstruktor koji vrsi dependency injection klasa <seealso cref="UserManager{TUser}"/> i <seealso cref="SignInManager{TUser}"/> <br />
         ///     u klasu <see cref="AuthenticationController"/>
         /// </summary>
         /// <param name="userManager">Instanca klase UserManager sa parametrom tipa klase Person</param>
