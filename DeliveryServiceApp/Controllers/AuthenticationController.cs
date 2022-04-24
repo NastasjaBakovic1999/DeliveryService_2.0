@@ -84,7 +84,7 @@ namespace DeliveryServiceApp.Controllers
         #region registration
 
         /// <summary>
-        ///     Get akcija koja vraca razor stranicu <br />
+        ///     Get akcija koja vraca View razor stranice <br />
         ///     sa formom za registraciju korisnika.
         /// </summary>
         /// <returns>Razor stranica</returns>
@@ -159,7 +159,7 @@ namespace DeliveryServiceApp.Controllers
         #endregion
 
         /// <summary>
-        ///     Get akcija koja vraca razor stranicu sa formom za logovanje korisnika
+        ///     Get akcija koja vraca View razor stranice sa formom za logovanje korisnika
         /// </summary>
         /// <returns>Razor stranica</returns>
         #region login
