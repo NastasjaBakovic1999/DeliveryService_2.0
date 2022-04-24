@@ -54,7 +54,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="fName"></param>
+        /// <param name="fName">Ime osobe</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetFirstName(string fName)
@@ -94,7 +94,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="lName"></param>
+        /// <param name="lName">Prezime osobe</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetLastName(string lName)

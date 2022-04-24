@@ -43,7 +43,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="doe"></param>
+        /// <param name="doe">Datum zaposlenja</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetDateOfEmployment(DateTime doe)
         {

@@ -51,7 +51,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="address"></param>
+        /// <param name="address">Adresa kupca</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetAddres(string address)
@@ -91,7 +91,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="postalCode"></param>
+        /// <param name="postalCode">Postanski broj kupca</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetPostalCode(string postalCode)

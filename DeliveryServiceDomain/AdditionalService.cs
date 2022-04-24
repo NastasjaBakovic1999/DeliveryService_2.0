@@ -56,7 +56,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id objekta</param>
         /// <exception cref="ArgumentException"></exception>
         public void SetAddiitonalServiceId(int id)
         {
@@ -112,7 +112,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Ime dodatne usluge</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetAdditionalServiceName(string name)
@@ -148,7 +148,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="price"></param>
+        /// <param name="price">Cena dodatne usluge</param>
         /// <exception cref="ArgumentException"></exception>
         public void SetAdditionalServicePrice(double price)
         {
@@ -183,7 +183,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="shipments"></param>
+        /// <param name="shipments">Posiljke koje imaju odredjenu dodatnu uslugu</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetShipments(List<AdditionalServiceShipment> shipments)

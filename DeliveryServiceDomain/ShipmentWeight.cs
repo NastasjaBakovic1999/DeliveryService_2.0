@@ -56,7 +56,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id objekta</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetShipmentWeightId(int id)
         {
@@ -86,7 +86,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="price"></param>
+        /// <param name="price">Cena po tezini posiljke</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetShipmentWeightPrice(double price)
         {
@@ -120,7 +120,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///       </list>
         /// </summary>
-        /// <param name="desc"></param>
+        /// <param name="desc">Opis tezine posiljke u kg</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetShipmentWeightDescpription(string desc)
@@ -174,7 +174,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///       </list>
         /// </summary>
-        /// <param name="addss"></param>
+        /// <param name="addss">Lista posiljaka koje imaju odredjenu tezinu</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetAdShipmentStatuses(List<Shipment> ss)

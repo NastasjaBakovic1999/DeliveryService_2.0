@@ -52,7 +52,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id objekta</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetStatusId(int id)
         {
@@ -86,7 +86,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///     </list>
         /// </summary>
-        /// <param name="status"></param>
+        /// <param name="status">Opis statusa</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetStatusName(string status)
@@ -140,7 +140,7 @@ namespace DeliveryServiceDomain
         ///         </item>
         ///       </list>
         /// </summary>
-        /// <param name="addss"></param>
+        /// <param name="addss">Lista posiljaka koje imaju odredjeni status</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public void SetAdShipmentStatuses(List<StatusShipment> ss)
