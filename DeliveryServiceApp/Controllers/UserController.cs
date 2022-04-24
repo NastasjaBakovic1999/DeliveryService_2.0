@@ -67,11 +67,10 @@ namespace DeliveryServiceApp.Controllers
 
 
         /// <summary>
-        ///     Konstruktor koji vrsi dependency injection interfejsa <seealso cref="IPersonUnitOfWork"/> i <seealso cref="UserManager"/> <br />
-        ///     u klasu <see cref="UserController"/>
+        ///     Konstruktor koji vrsi dependency injection
         /// </summary>
-        /// <param name="unitOfWork"></param>
-        /// <param name="userManager"></param>
+        /// <param name="unitOfWork">Interfejs <seealso cref="IUnitOfWork"/></param>
+        /// <param name="userManager">Klasa <seealso cref="UserManager{TUser}"/></param>
         public UserController(UserManager<Person> userManager, IPersonUnitOfWork unitOfWork)
         {
             this.userManager = userManager;
