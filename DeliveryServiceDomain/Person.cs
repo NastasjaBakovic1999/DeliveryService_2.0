@@ -64,7 +64,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("First Name cannot be null!");
             }
 
-            if (fName.Length == 0 || fName == "")
+            if (fName.Trim().Length == 0 || fName == "")
             {
                 throw new ArgumentException("First Name cannot be empty space!");
             }
@@ -78,7 +78,7 @@ namespace DeliveryServiceDomain
         /// <returns>Prezime osobe</returns>
         public string GetLastName()
         {
-            return FirstName;
+            return LastName;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Last Name cannot be null!");
             }
 
-            if (lName.Length == 0 || lName == "")
+            if (lName.Trim().Length == 0 || lName == "")
             {
                 throw new ArgumentException("Last Name cannot be empty space!");
             }
