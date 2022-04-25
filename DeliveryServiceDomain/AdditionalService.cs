@@ -12,6 +12,17 @@ namespace DeliveryServiceDomain
     /// </summary>
     public class AdditionalService
     {
+        public AdditionalService()
+        {
+
+        }
+
+        public AdditionalService(int id, string name, double price)
+        {
+            AdditionalServiceId = id;
+            AdditionalServiceName = name;
+            AdditionalServicePrice = price;
+        }
         /// <value>
         ///     Id objekta klase AdditionalService
         /// </value>
@@ -35,7 +46,7 @@ namespace DeliveryServiceDomain
         ///     Lista ima pomocnu funkciju, pre svega olaksava mapiranje ORM alatima, ali i rad <br />
         ///     sa objektima u kontrolerima.
         /// </remarks>
-        public List<AdditionalServiceShipment> Shipments { get; set; }
+        public List<AdditionalServiceShipment> Shipments { get; set; } = new List<AdditionalServiceShipment>();
 
 
         /// <summary>

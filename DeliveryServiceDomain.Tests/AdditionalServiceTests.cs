@@ -108,5 +108,23 @@ namespace DeliveryServiceDomain.Tests
             Assert.Throws<ArgumentException>(() => _sut.SetShipments(shipments));
         }
 
+        [Fact]
+        public void SetShipmentsFact()
+        {
+            var shipments = (List<AdditionalServiceShipment>)A.CollectionOfFake<AdditionalServiceShipment>(10);
+            Random rand = new Random();
+
+            for(int i=0;i<shipments.Count; i++)
+            {
+                shipments[i] = new AdditionalServiceShipment(rand.Next(50, 101),
+                                                                  rand.Next(10, 200),
+                                                                  new AdditionalService(),
+                                                                  new Shipment());
+            }
+
+
+            _sut.SetShipments(shipments);
+            Assert.Equal(10, _sut.GetShipments().Count);
+        }
     }
 }
