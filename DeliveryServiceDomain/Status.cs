@@ -32,7 +32,7 @@ namespace DeliveryServiceDomain
         ///         Olaksava mapiranje ORM alatima i rad sa objektima u kontroleru.
         ///     </para>
         /// </remarks>
-        public List<StatusShipment> Shipments { get; set; }
+        public List<StatusShipment> Shipments { get; set; } = new List<StatusShipment>();
 
         /// <summary>
         ///     Funkcija koja vraca Id objekta klase Status
@@ -96,7 +96,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Status Name cannot be null!");
             }
 
-            if (status.Length == 0 || status == "")
+            if (status.Trim().Length == 0 || status == "")
             {
                 throw new ArgumentException("Status Name cannot be empty string!");
             }
@@ -116,7 +116,7 @@ namespace DeliveryServiceDomain
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NullReferenceException"></exception>
-        public List<StatusShipment> GetShipmentStatuses()
+        public List<StatusShipment> GetShipments()
         {
             if (Shipments == null)
             {
@@ -143,7 +143,7 @@ namespace DeliveryServiceDomain
         /// <param name="addss">Lista posiljaka koje imaju odredjeni status</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public void SetAdShipmentStatuses(List<StatusShipment> ss)
+        public void SetShipments(List<StatusShipment> ss)
         {
             if (ss == null)
             {
@@ -152,7 +152,8 @@ namespace DeliveryServiceDomain
 
             foreach (StatusShipment statusShipment in ss)
             {
-                if (Shipments.Contains(statusShipment))
+                if (Shipments.Any(a => a.ShipmentId == statusShipment.ShipmentId && 
+                                        a.StatusId == statusShipment.StatusId))
                 {
                     throw new ArgumentException("Status shipments list already contains some of the forwarded objects!");
                 }
