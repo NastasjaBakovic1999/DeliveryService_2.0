@@ -16,6 +16,20 @@ namespace DeliveryServiceDomain
     /// </remarks>
     public class StatusShipment
     {
+        public StatusShipment()
+        {
+
+        }
+
+        public StatusShipment(int sId, int shId, Status status, Shipment shipment, DateTime dt)
+        {
+            StatusId = sId;
+            ShipmentId = shId;
+            Status = status;
+            Shipment = shipment;
+            StatusTime = dt;
+        }
+
         /// <value>
         ///     Id objekta klase Status
         /// </value>
