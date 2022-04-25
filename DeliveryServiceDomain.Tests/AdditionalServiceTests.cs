@@ -53,7 +53,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetAdditionalServiceNameNullTheory(string name)
+        public void SetAdditionalServiceNameEmptyStringTheory(string name)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetAdditionalServiceName(name));
         }
