@@ -61,7 +61,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Address cannot be null!");
             }
 
-            if (address.Length == 0 || address == "")
+            if (address.Trim().Length == 0 || address == "")
             {
                 throw new ArgumentException("Address cannot be empty space!");
             }
@@ -101,7 +101,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Postal Code cannot be null!");
             }
 
-            if (postalCode.Length == 0 || postalCode == "")
+            if (postalCode.Trim().Length == 0 || postalCode == "")
             {
                 throw new ArgumentException("Postal Code cannot be empty space!");
             }
