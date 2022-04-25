@@ -70,31 +70,10 @@ namespace DeliveryServiceDomain
 
         /// <summary>
         ///     Funkcija vraca vrednost atributa AdditionalServiceName
-        ///      <list type="bullet">
-        ///         <item>
-        ///             <term>Ukoliko je naziv null </term>
-        ///             <description>Funkcija baca <see cref="NullReferenceException"/> gresku.</description>
-        ///         </item
-        ///          <item>
-        ///             <term>Ukoliko je naziv prazan string</term>
-        ///             <description>Funkcija baca <see cref="InvalidOperationException"/> gresku.</description>
-        ///         </item>
-        ///     </list>
         /// </summary>
         /// <returns>Naziv, odnosno, opis dodatne usluge</returns>
-        /// <exception cref="NullReferenceException"></exception>
-        /// <exception cref="InvalidOperationException"></exception>
         public string GetAdditionalServiceName()
         {
-            if(AdditionalServiceName == null)
-            {
-                throw new NullReferenceException("Name is null!");
-            }
-            
-            if (AdditionalServiceName == "" || AdditionalServiceName.Length == 0)
-            {
-                throw new InvalidOperationException("Name is empty string!");
-            }
             return AdditionalServiceName;
         }
 
@@ -122,9 +101,9 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Name cannot be null!");
             }
 
-            if (name.Length == 0 || name == "")
+            if (name.Trim().Length == 0 || name == "")
             {
-                throw new ArgumentException("Name cannot be empty space!");
+                throw new ArgumentException("Name cannot be empty string!");
             }
 
             AdditionalServiceName = name;
@@ -156,17 +135,40 @@ namespace DeliveryServiceDomain
             {
                 throw new ArgumentException("Price cannot be lower than 0!");
             }
+
+            AdditionalServicePrice = price;
         }
 
         /// <summary>
         ///     Funkcija koja vraca listu objekata klase AdditionalServiceShipment
+        ///     <list type="bullet">
+        ///         <item>
+        ///             <term>Ukoliko je lista objekata null</term>
+        ///             <description>Funkcija baca <see cref="NullReferenceException"/> gresku.</description>
+        ///         </item>
+        ///         <item>
+        ///             <term>Ukoliko je lista inicijalizovana ali ne sadrzi nijedan objekat</term>
+        ///             <description>Funkcija baca <see cref="Exception"/> gresku.</description>
+        ///         </item>
+        ///     </list>
         /// </summary>
         /// <remarks>
         ///     Ova lista definiste dodatnu uslugu i posiljku na koju se ta usluga odnosi
         /// </remarks>
         /// <returns>Lista agregiranihh objekata</returns>
+        /// <exception cref="NullReferenceException"></exception>
+        /// <exception cref="Exception"></exception>
         public List<AdditionalServiceShipment> GetShipments()
         {
+            if(Shipments == null)
+            {
+                throw new NullReferenceException("The list is null!");
+            }
+            if(Shipments.Count == 0)
+            {
+                throw new Exception("The list is empty!");
+            }
+
             return Shipments;
         }
 
