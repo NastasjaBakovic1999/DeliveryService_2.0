@@ -16,6 +16,18 @@ namespace DeliveryServiceDomain
     /// </remarks>
     public class AdditionalServiceShipment
     {
+        public AdditionalServiceShipment()
+        {
+
+        }
+        public AdditionalServiceShipment(int idAS, int idS, AdditionalService ads, Shipment s)
+        {
+            AdditionalServiceId = idAS;
+            ShipmentId = idS;
+            AdditionalService = ads;
+            Shipment = s;
+        }
+
         /// <value>
         ///     Id objekta klase AdditionalService
         /// </value>
@@ -159,7 +171,7 @@ namespace DeliveryServiceDomain
         /// </summary>
         /// <param name="shipment">Posiljka kojoj se dodeljuje neka dodatna usluga</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public void GetShipment(Shipment shipment)
+        public void SetShipment(Shipment shipment)
         {
             if (shipment == null)
             {
