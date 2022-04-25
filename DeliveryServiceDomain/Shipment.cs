@@ -11,6 +11,20 @@ namespace DeliveryServiceDomain
     /// </summary>
     public class Shipment
     {
+        public Shipment()
+        {
+
+        }
+
+        public Shipment(int shipmentWeightId, int shipmentId, int customerId, int delivererId)
+        {
+            ShipmentWeightId = shipmentWeightId;
+            ShipmentId = shipmentId;
+            CustomerId = customerId;
+            DelivererId = delivererId;
+        }
+
+
         /// <value>
         ///     Id objekta klase ShipmentWeight
         /// </value>
