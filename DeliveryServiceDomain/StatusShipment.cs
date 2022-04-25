@@ -16,6 +16,20 @@ namespace DeliveryServiceDomain
     /// </remarks>
     public class StatusShipment
     {
+        public StatusShipment()
+        {
+
+        }
+
+        public StatusShipment(int sId, int shId, Status status, Shipment shipment, DateTime dt)
+        {
+            StatusId = sId;
+            ShipmentId = shId;
+            Status = status;
+            Shipment = shipment;
+            StatusTime = dt;
+        }
+
         /// <value>
         ///     Id objekta klase Status
         /// </value>
@@ -99,7 +113,7 @@ namespace DeliveryServiceDomain
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetShipmentId(int id)
         {
-            if (id <= 0)
+            if (id < 0 || id == 0)
             {
                 throw new ArgumentOutOfRangeException("Id cannot be lower than or equal to 0!");
             }
@@ -116,10 +130,6 @@ namespace DeliveryServiceDomain
         /// <returns>Objekat klase Status</returns>
         public Status GetStatus()
         {
-            if (Status == null)
-            {
-                throw new NullReferenceException("Status is null!");
-            }
 
             return Status;
         }
@@ -201,9 +211,9 @@ namespace DeliveryServiceDomain
         /// <exception cref="ArgumentException"></exception>
         public void SetStatusTime(DateTime dt)
         {
-            if(dt > DateTime.Now)
+            if (dt > DateTime.Now || dt > DateTime.Today)
             {
-                throw new ArgumentException("Status Time cannot be in the future!");
+                throw new ArgumentOutOfRangeException("Status Time cannot be in the future!");
             }
 
             StatusTime = dt;
