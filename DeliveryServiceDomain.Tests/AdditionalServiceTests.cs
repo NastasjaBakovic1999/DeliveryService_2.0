@@ -18,17 +18,18 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(1,1)]
         [InlineData(10,10)]
         [InlineData(200,200)]
-        public void SetAdditionalServiceIdPositiveIntTheory(int expected, int id)
+        public void SetAdditionalServiceId_PositiveInt_Theory(int expected, int id)
         {
             _sut.SetAddiitonalServiceId(id);
             Assert.Equal(expected, _sut.GetAdditionalServiceId());
         }
 
         [Theory]
+        [InlineData(0)]
         [InlineData(-1)]
         [InlineData(-10)]
         [InlineData(-199)]
-        public void SetAdditionalServiceIdNegativeIntTheory(int id)
+        public void SetAdditionalServiceId_NegativeIntOrZero_Theory(int id)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetAddiitonalServiceId(id));
         }
@@ -37,14 +38,14 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("SMS obavestenje")]
         [InlineData("Osiguranje vrednosti")]
         [InlineData("Dodatno pakovanje")]
-        public void SetAdditionalServiceNameCorrectNameTheory(string name)
+        public void SetAdditionalServiceName_CorrectName_Theory(string name)
         {
             _sut.SetAdditionalServiceName(name);
             Assert.Equal(name, _sut.GetAdditionalServiceName());
         }
 
         [Fact]
-        public void SetAdditionalServiceNameNullFact()
+        public void SetAdditionalServiceName_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetAdditionalServiceName(null));
         }
@@ -53,7 +54,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetAdditionalServiceNameEmptyStringTheory(string name)
+        public void SetAdditionalServiceName_EmptyString_Theory(string name)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetAdditionalServiceName(name));
         }
@@ -62,54 +63,54 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(0)]
         [InlineData(10)]
         [InlineData(159)]
-        public void SetAdditionalServicePricePositiveAmountTheory(double price)
+        public void SetAdditionalServicePrice_PositiveAmount_Theory(double price)
         {
             _sut.SetAdditionalServicePrice(price);
             Assert.Equal(price, _sut.GetAdditionalServicePrice());
         }
 
         [Fact]
-        public void SetAdditionalServicePriceNegativeAmountFact()
+        public void SetAdditionalServicePrice_NegativeAmount_Fact()
         {
             Assert.Throws<ArgumentException>(() => _sut.SetAdditionalServicePrice(-10));
         }
 
         [Fact]
-        public void GetShipmentsNullFact()
+        public void GetShipments_Null_Fact()
         {
             _sut.Shipments = null;
             Assert.Throws<NullReferenceException>(() => _sut.GetShipments());
         }
 
         [Fact]
-        public void GetShipmentsEmptyListFact()
+        public void GetShipments_EmptyList_Fact()
         {
             _sut.Shipments = new List<AdditionalServiceShipment>();
             Assert.Throws<Exception>(() => _sut.GetShipments());
         }
 
         [Fact]
-        public void GetShipmentsFact()
+        public void GetShipments_Fact()
         {
             _sut.Shipments = (List<AdditionalServiceShipment>)A.CollectionOfFake<AdditionalServiceShipment>(10);
             Assert.Equal(10, _sut.GetShipments().Count);
         }
 
         [Fact]
-        public void SetShipmentsNullFact()
+        public void SetShipments_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetShipments(null));
         }
 
         [Fact]
-        public void SetShipmentsEmptyListFact()
+        public void SetShipments_EmptyList_Fact()
         {
             var shipments = (List<AdditionalServiceShipment>)A.CollectionOfFake<AdditionalServiceShipment>(0);
             Assert.Throws<ArgumentException>(() => _sut.SetShipments(shipments));
         }
 
         [Fact]
-        public void SetShipmentsFact()
+        public void SetShipments_Fact()
         {
             var shipments = (List<AdditionalServiceShipment>)A.CollectionOfFake<AdditionalServiceShipment>(10);
             Random rand = new Random();

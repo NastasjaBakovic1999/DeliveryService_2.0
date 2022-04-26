@@ -17,7 +17,7 @@ namespace DeliveryServiceDomain.Tests
 
         [Theory]
         [MemberData(nameof(DateOfEmploymentData))]
-        public void SetDateOfEmploymentCorrectDateTheory(DateTime doe)
+        public void SetDateOfEmployment_CorrectDate_Theory(DateTime doe)
         {
             _sut.SetDateOfEmployment(doe);
             Assert.Equal(doe, _sut.GetDateOfEmployment());
@@ -25,7 +25,7 @@ namespace DeliveryServiceDomain.Tests
 
         [Theory]
         [MemberData(nameof(DateOfEmploymentInFutureData))]
-        public void SetDateOfEmploymentDateInFutureTheory(DateTime doe)
+        public void SetDateOfEmployment_DateInFuture_Theory(DateTime doe)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetDateOfEmployment(doe));
         }

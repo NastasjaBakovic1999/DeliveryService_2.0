@@ -21,17 +21,18 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(1, 1)]
         [InlineData(10, 10)]
         [InlineData(200, 200)]
-        public void SetStatusIdPositiveIntTheory(int expected, int id)
+        public void SetStatusId_PositiveInt_Theory(int expected, int id)
         {
             _sut.SetStatusId(id);
             Assert.Equal(expected, _sut.GetStatusId());
         }
 
         [Theory]
+        [InlineData(0)]
         [InlineData(-1)]
         [InlineData(-10)]
         [InlineData(-199)]
-        public void SetStatusIdNegativeIntTheory(int id)
+        public void SetStatusId_NegativeIntOrZero_Theory(int id)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetStatusId(id));
         }
@@ -40,29 +41,30 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(1, 1)]
         [InlineData(10, 10)]
         [InlineData(200, 200)]
-        public void SetShipmentIdPositiveIntTheory(int expected, int id)
+        public void SetShipmentId_PositiveInt_Theory(int expected, int id)
         {
             _sut.SetShipmentId(id);
             Assert.Equal(expected, _sut.GetShipmentId());
         }
 
         [Theory]
+        [InlineData(0)]
         [InlineData(-1)]
         [InlineData(-10)]
         [InlineData(-199)]
-        public void SetShipmentIdNegativeIntTheory(int id)
+        public void SetShipmentId_NegativeIntOrZero_Theory(int id)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetShipmentId(id));
         }
 
         [Fact]
-        public void SetStatusNullObjectFact()
+        public void SetStatus_NullObject_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetStatus(null));
         }
 
         [Fact]
-        public void SetStatusFact()
+        public void SetStatus_Fact()
         {
             var adss = A.Fake<Status>();
             _sut.SetStatus(adss);
@@ -71,13 +73,13 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void SetShipmentNullObjectFact()
+        public void SetShipment_NullObject_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetShipment(null));
         }
 
         [Fact]
-        public void SetShipmentFact()
+        public void SetShipment_Fact()
         {
             var shp = A.Fake<Shipment>();
             _sut.SetShipment(shp);
@@ -87,7 +89,7 @@ namespace DeliveryServiceDomain.Tests
 
         [Theory]
         [MemberData(nameof(DateData))]
-        public void SetDateOfEmploymentCorrectDateTheory(DateTime doe)
+        public void SetDateOfEmployment_CorrectDate_Theory(DateTime doe)
         {
             _sut.SetStatusTime(doe);
             Assert.Equal(doe, _sut.GetStatusTime());
@@ -95,7 +97,7 @@ namespace DeliveryServiceDomain.Tests
 
         [Theory]
         [MemberData(nameof(DateInFutureData))]
-        public void SetDateOfEmploymentDateInFutureTheory(DateTime doe)
+        public void SetDateOfEmployment_DateInFuture_Theory(DateTime doe)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetStatusTime(doe));
         }
