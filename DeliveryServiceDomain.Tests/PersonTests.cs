@@ -19,14 +19,14 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("Marko")]
         [InlineData("Ana Marija")]
         [InlineData("Ana")]
-        public void SetFirstNameTheory(string name)
+        public void SetFirstName_Theory(string name)
         {
             _sut.SetFirstName(name);
             Assert.Equal(name, _sut.GetFirstName());
         }
 
         [Fact]
-        public void SetFirstNameNullFact()
+        public void SetFirstName_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetFirstName(null));
         }
@@ -35,7 +35,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetFirstNameEmptyStringTheory(string name)
+        public void SetFirstName_EmptyString_Theory(string name)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetFirstName(name));
         }
@@ -44,14 +44,14 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("Mihajlovic")]
         [InlineData("Petrovic-Simic")]
         [InlineData("Ilic")]
-        public void SetLastNameTheory(string name)
+        public void SetLastName_Theory(string name)
         {
             _sut.SetLastName(name);
             Assert.Equal(name, _sut.GetLastName());
         }
 
         [Fact]
-        public void SetLastNameNullFact()
+        public void SetLastName_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetLastName(null));
         }
@@ -60,7 +60,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetLastNameEmptyStringTheory(string name)
+        public void SetLastName_EmptyString_Theory(string name)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetLastName(name));
         }

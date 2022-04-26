@@ -20,17 +20,18 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(1, 1)]
         [InlineData(10, 10)]
         [InlineData(200, 200)]
-        public void SetShipmentWeightIdPositiveIntTheory(int expected, int id)
+        public void SetShipmentWeightId_PositiveInt_Theory(int expected, int id)
         {
             _sut.SetShipmentWeightId(id);
             Assert.Equal(expected, _sut.GetShipmentWeightId());
         }
 
         [Theory]
+        [InlineData(0)]
         [InlineData(-1)]
         [InlineData(-10)]
         [InlineData(-199)]
-        public void SetShipmentWeightIdNegativeIntTheory(int id)
+        public void SetShipmentWeightId_NegativeIntOrZero_Theory(int id)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetShipmentWeightId(id));
         }
@@ -38,14 +39,14 @@ namespace DeliveryServiceDomain.Tests
         [Theory]
         [InlineData("Od 0,5 do 1kg")]
         [InlineData("Preko 20kg")]
-        public void SetShipmentWeightDescpriptionTheory(string desc)
+        public void SetShipmentWeight_Descpription_Theory(string desc)
         {
             _sut.SetShipmentWeightDescpription(desc);
             Assert.Equal(desc, _sut.GetShipmentWeightDescpription());
         }
 
         [Fact]
-        public void SetShipmentWeightDescriptionNullFact()
+        public void SetShipmentWeightDescription_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetShipmentWeightDescpription(null));
         }
@@ -54,7 +55,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetShipmentWeightDescpriptionEmptyStringTheory(string content)
+        public void SetShipmentWeightDescpription_EmptyString_Theory(string content)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetShipmentWeightDescpription(content));
         }
@@ -63,27 +64,27 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(0)]
         [InlineData(10)]
         [InlineData(159)]
-        public void SetShipmentWeightPricePositiveAmountTheory(double price)
+        public void SetShipmentWeightPrice_PositiveAmount_Theory(double price)
         {
             _sut.SetShipmentWeightPrice(price);
             Assert.Equal(price, _sut.GetShipmentWeightPrice());
         }
 
         [Fact]
-        public void SetShipmentWeightPriceNegativeAmountFact()
+        public void SetShipmentWeightPrice_NegativeAmount_Fact()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetShipmentWeightPrice(-10));
         }
 
         [Fact]
-        public void SetShipmentsNullListFact()
+        public void SetShipments_NullList_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetShipmens(null));
         }
 
         [Theory]
         [MemberData(nameof(ShipmentsData))]
-        public void SetShipmentsDoubleObjectsFact(List<Shipment> shipments)
+        public void SetShipments_DoubleObjects_Fact(List<Shipment> shipments)
         {
             var sp = (List<Shipment>)A.CollectionOfFake<Shipment>(10);
 
@@ -101,7 +102,7 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void SetShipmentsFact()
+        public void SetShipments_Fact()
         {
             var shipments = (List<Shipment>)A.CollectionOfFake<Shipment>(10);
             Random rand = new Random();

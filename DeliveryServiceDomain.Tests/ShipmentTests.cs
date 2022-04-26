@@ -20,17 +20,18 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(1, 1)]
         [InlineData(10, 10)]
         [InlineData(200, 200)]
-        public void SetShipmentWeightIdPositiveIntTheory(int expected, int id)
+        public void SetShipmentWeightId_PositiveInt_Theory(int expected, int id)
         {
             _sut.SetShipmentWeightId(id);
             Assert.Equal(expected, _sut.GetShipmentWeightId());
         }
 
         [Theory]
+        [InlineData(0)]
         [InlineData(-1)]
         [InlineData(-10)]
         [InlineData(-199)]
-        public void SetShipmentWeightIdNegativeIntTheory(int id)
+        public void SetShipmentWeightId_NegativeIntOrZero_Theory(int id)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetShipmentWeightId(id));
         }
@@ -39,17 +40,18 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(1, 1)]
         [InlineData(10, 10)]
         [InlineData(200, 200)]
-        public void SetShipmentIdPositiveIntTheory(int expected, int id)
+        public void SetShipmentId_PositiveInt_Theory(int expected, int id)
         {
             _sut.SetShipmentId(id);
             Assert.Equal(expected, _sut.GetShipmentId());
         }
 
         [Theory]
+        [InlineData(0)]
         [InlineData(-1)]
         [InlineData(-10)]
         [InlineData(-199)]
-        public void SetShipmentIdNegativeIntTheory(int id)
+        public void SetShipmentId_NegativeIntOrZero_Theory(int id)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetShipmentId(id));
         }
@@ -58,7 +60,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(1, 1)]
         [InlineData(10, 10)]
         [InlineData(200, 200)]
-        public void SetCustomerIdPositiveIntTheory(int expected, int id)
+        public void SetCustomerId_PositiveInt_Theory(int expected, int id)
         {
             _sut.SetCustomerId(id);
             Assert.Equal(expected, _sut.GetCustomerId());
@@ -68,7 +70,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(-1)]
         [InlineData(-10)]
         [InlineData(-199)]
-        public void SetCustomerIdNegativeIntTheory(int id)
+        public void SetCustomerId_NegativeIntOrZero_Theory(int id)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetCustomerId(id));
         }
@@ -77,7 +79,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(1, 1)]
         [InlineData(10, 10)]
         [InlineData(200, 200)]
-        public void SetDelivererIdPositiveIntTheory(int expected, int id)
+        public void SetDelivererId_PositiveInt_Theory(int expected, int id)
         {
             _sut.SetDelivererId(id);
             Assert.Equal(expected, _sut.GetDelivererId());
@@ -87,13 +89,13 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(-1)]
         [InlineData(-10)]
         [InlineData(-199)]
-        public void SetDelivererIdNegativeIntTheory(int id)
+        public void SetDelivererId_NegativeIntOrZero_Theory(int id)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetDelivererId(id));
         }
 
         [Fact]
-        public void SetShipmentCodeFact()
+        public void SetShipmentCode_Fact()
         {
             var guid = new Guid();
             var code = guid.ToString().Substring(0, 11);
@@ -103,7 +105,7 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void SetShipmentCodeNullFact()
+        public void SetShipmentCode_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetShipmentCode(null));
         }
@@ -112,7 +114,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetShipmentCodeEmptyStringTheory(string code)
+        public void SetShipmentCode_EmptyString_Theory(string code)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetShipmentCode(code));
         }
@@ -120,14 +122,14 @@ namespace DeliveryServiceDomain.Tests
         [Theory]
         [InlineData("Odeca")]
         [InlineData("Racunarska tehnika")]
-        public void SetShipmentContentTheory(string content)
+        public void SetShipmentContent_Theory(string content)
         {
             _sut.SetShipmentContent(content);
             Assert.Equal(content, _sut.GetShipmentContent());
         }
 
         [Fact]
-        public void SetShipmentContentNullFact()
+        public void SetShipmentContent_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetShipmentContent(null));
         }
@@ -136,7 +138,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetShipmentContentEmptyStringTheory(string content)
+        public void SetShipmentContent_EmptyString_Theory(string content)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetShipmentContent(content));
         }
@@ -145,14 +147,14 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("Beograd")]
         [InlineData("Bajina Basta")]
         [InlineData("Ub")]
-        public void SetSendingCityTheory(string sCity)
+        public void SetSendingCity_Theory(string sCity)
         {
             _sut.SetSendingCity(sCity);
             Assert.Equal(sCity, _sut.GetSendingCity());
         }
 
         [Fact]
-        public void SetSendingCityNullFact()
+        public void SetSendingCity_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetSendingCity(null));
         }
@@ -161,7 +163,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetSendingCityEmptyStringTheory(string sCity)
+        public void SetSendingCity_EmptyString_Theory(string sCity)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetSendingCity(sCity));
         }
@@ -170,14 +172,14 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("Ive Lole Ribara 5")]
         [InlineData("Mija Kovacevica 7b")]
         [InlineData("Vojislava Ilica 20")]
-        public void SetSendingAddressCorrectAddressTheory(string address)
+        public void SetSendingAddress_CorrectAddress_Theory(string address)
         {
             _sut.SetSendingAddress(address);
             Assert.Equal(address, _sut.GetSendingAddress());
         }
 
         [Fact]
-        public void SetSendingAddressNullFact()
+        public void SetSendingAddress_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetSendingAddress(null));
         }
@@ -186,7 +188,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetSendingAddressEmptyStringTheory(string address)
+        public void SetSendingAddress_EmptyString_Theory(string address)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetSendingAddress(address));
         }
@@ -194,14 +196,14 @@ namespace DeliveryServiceDomain.Tests
         [Theory]
         [InlineData("11000")]
         [InlineData("31330")]
-        public void SetSendingPostalCodeCorrectAddressTheory(string code)
+        public void SetSendingPostalCode_CorrectAddress_Theory(string code)
         {
             _sut.SetSendingPostalCode(code);
             Assert.Equal(code, _sut.GetSendingPostalCode());
         }
 
         [Fact]
-        public void SetSendingPostalCodeNullFact()
+        public void SetSendingPostalCode_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetSendingPostalCode(null));
         }
@@ -210,7 +212,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetSendingPostalCodeEmptyStringTheory(string code)
+        public void SetSendingPostalCode_EmptyString_Theory(string code)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetSendingPostalCode(code));
         }
@@ -219,14 +221,14 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("Beograd")]
         [InlineData("Bajina Basta")]
         [InlineData("Ub")]
-        public void SetReceivngCityTheory(string sCity)
+        public void SetReceivngCity_Theory(string sCity)
         {
             _sut.SetReceivingCity(sCity);
             Assert.Equal(sCity, _sut.GetReceivingCity());
         }
 
         [Fact]
-        public void SetReceivingCityNullFact()
+        public void SetReceivingCity_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetReceivingCity(null));
         }
@@ -235,7 +237,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetReceivingCityEmptyStringTheory(string sCity)
+        public void SetReceivingCity_EmptyString_Theory(string sCity)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetReceivingCity(sCity));
         }
@@ -244,14 +246,14 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("Ive Lole Ribara 5")]
         [InlineData("Mija Kovacevica 7b")]
         [InlineData("Vojislava Ilica 20")]
-        public void SetReceivingAddressCorrectAddressTheory(string address)
+        public void SetReceivingAddress_CorrectAddress_Theory(string address)
         {
             _sut.SetReceivingAddress(address);
             Assert.Equal(address, _sut.GetReceivingAddress());
         }
 
         [Fact]
-        public void SetReceivingAddressNullFact()
+        public void SetReceivingAddress_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetReceivingAddress(null));
         }
@@ -260,7 +262,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetReceivingAddressEmptyStringTheory(string address)
+        public void SetReceivingAddress_EmptyString_Theory(string address)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetReceivingAddress(address));
         }
@@ -268,14 +270,14 @@ namespace DeliveryServiceDomain.Tests
         [Theory]
         [InlineData("11000")]
         [InlineData("31330")]
-        public void SetReceivingPostalCodeCorrectAddressTheory(string code)
+        public void SetReceivingPostalCode_CorrectAddress_Theory(string code)
         {
             _sut.SetReceivingPostalCode(code);
             Assert.Equal(code, _sut.GetSReceivingPostalCode());
         }
 
         [Fact]
-        public void SetReceivingPostalCodeNullFact()
+        public void SetReceivingPostalCode_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetReceivingPostalCode(null));
         }
@@ -284,7 +286,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetReceivingPostalCodeEmptyStringTheory(string code)
+        public void SetReceivingPostalCode_EmptyString_Theory(string code)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetReceivingPostalCode(code));
         }
@@ -292,14 +294,14 @@ namespace DeliveryServiceDomain.Tests
         [Theory]
         [InlineData("Nastasja Bakovic")]
         [InlineData("Ana-Marija Stefanovic-Perisic")]
-        public void SetContactPersonNameCorrectAddressTheory(string name)
+        public void SetContactPersonName_CorrectName_Theory(string name)
         {
             _sut.SetContactPersonName(name);
             Assert.Equal(name, _sut.GetContactPersonName());
         }
 
         [Fact]
-        public void SetContactPersonNullFact()
+        public void SetContactPersonName_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetContactPersonName(null));
         }
@@ -308,7 +310,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetContactPersonEmptyStringTheory(string name)
+        public void SetContactPersonName_EmptyString_Theory(string name)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetContactPersonName(name));
         }
@@ -317,14 +319,14 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("06001234567")]
         [InlineData("452695")]
         [InlineData("011678543")]
-        public void SetContactPersonPhoneCorrectAddressTheory(string phone)
+        public void SetContactPersonPhone_CorrectAddress_Theory(string phone)
         {
             _sut.SetContactPersonPhone(phone);
             Assert.Equal(phone, _sut.GetContactPersonPhone());
         }
 
         [Fact]
-        public void SetContactPersonPhoneNullFact()
+        public void SetContactPersonPhone_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetContactPersonPhone(null));
         }
@@ -333,13 +335,13 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetAddressEmptyStringTheory(string phone)
+        public void SetAddress_EmptyString_Theory(string phone)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetContactPersonPhone(phone));
         }
 
         [Fact]
-        public void SetAddressCorrectAddressFact()
+        public void SetAddress_CorrectAddress_Fact()
         {
             var note = "Mozda nisu kod kuce";
             _sut.SetNote(note);
@@ -347,7 +349,7 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void SetNoteNullFact()
+        public void SetNote_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetNote(null));
         }
@@ -356,19 +358,19 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetNoteEmptyStringTheory(string note)
+        public void SetNote_EmptyString_Theory(string note)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetNote(note));
         }
 
         [Fact]
-        public void SetShipmentWeightNullObjectFact()
+        public void SetShipmentWeight_NullObject_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetShipmentWeight(null));
         }
 
         [Fact]
-        public void SetShipmentWeightFact()
+        public void SetShipmentWeight_Fact()
         {
             var adss = A.Fake<ShipmentWeight>();
             _sut.SetShipmentWeight(adss);
@@ -377,14 +379,14 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void GetShipmentWeightNullObjectFact()
+        public void GetShipmentWeight_NullObject_Fact()
         {
             _sut.ShipmentWeight = null;
             Assert.Throws<NullReferenceException>(() => _sut.GetShipmentWeight());
         }
 
         [Fact]
-        public void GetShipmentWeightFact()
+        public void GetShipmentWeight_Fact()
         {
             var sw = A.Fake<ShipmentWeight>();
             _sut.ShipmentWeight = sw;
@@ -392,13 +394,13 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void SetCustomerNullObjectFact()
+        public void SetCustomer_NullObject_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetCustomer(null));
         }
 
         [Fact]
-        public void SetCustomerFact()
+        public void SetCustomer_Fact()
         {
             var adss = A.Fake<Customer>();
             _sut.SetCustomer(adss);
@@ -407,14 +409,14 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void GetCustomerNullObjectFact()
+        public void GetCustomer_NullObject_Fact()
         {
             _sut.Customer = null;
             Assert.Throws<NullReferenceException>(() => _sut.GetCustomer());
         }
 
         [Fact]
-        public void GetCustomerFact()
+        public void GetCustomer_Fact()
         {
             var sw = A.Fake<Customer>();
             _sut.Customer = sw;
@@ -422,13 +424,13 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void SetDelivererNullObjectFact()
+        public void SetDeliverer_NullObject_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetDeliverer(null));
         }
 
         [Fact]
-        public void SetDelivererFact()
+        public void SetDeliverer_Fact()
         {
             var adss = A.Fake<Deliverer>();
             _sut.SetDeliverer(adss);
@@ -437,14 +439,14 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void GetDelivererNullObjectFact()
+        public void GetDeliverer_NullObject_Fact()
         {
             _sut.Deliverer = null;
             Assert.Throws<NullReferenceException>(() => _sut.GetDeliverer());
         }
 
         [Fact]
-        public void GetDelivererFact()
+        public void GetDeliverer_Fact()
         {
             var sw = A.Fake<Deliverer>();
             _sut.Deliverer = sw;
@@ -455,27 +457,27 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(0)]
         [InlineData(10)]
         [InlineData(159)]
-        public void SetPricePositiveAmountTheory(double price)
+        public void SetPrice_PositiveAmount_Theory(double price)
         {
             _sut.SetPrice(price);
             Assert.Equal(price, _sut.GetPrice());
         }
 
         [Fact]
-        public void SetPriceNegativeAmountFact()
+        public void SetPrice_NegativeAmount_Fact()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetPrice(-10));
         }
 
         [Fact]
-        public void SetAdditionalServicesNullListFact()
+        public void SetAdditionalServices_NullList_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetAdditionalServices(null));
         }
 
         [Theory]
         [MemberData(nameof(AdditionalServicesData))]
-        public void SetAdditionalServicesDoubleObjectsFact(List<AdditionalServiceShipment> shipments)
+        public void SetAdditionalServices_DoubleObjects_Fact(List<AdditionalServiceShipment> shipments)
         {
             var sp = (List<AdditionalServiceShipment>)A.CollectionOfFake<AdditionalServiceShipment>(10);
 
@@ -493,7 +495,7 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void SetAdditionalServicesFact()
+        public void SetAdditionalServices_Fact()
         {
             var shipments = (List<AdditionalServiceShipment>)A.CollectionOfFake<AdditionalServiceShipment>(10);
             Random rand = new Random();
@@ -512,7 +514,7 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void SetShipmentStatusesNullListFact()
+        public void SetShipmentStatuses_NullList_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetShipmentStatuses(null));
         }
@@ -520,7 +522,7 @@ namespace DeliveryServiceDomain.Tests
 
         [Theory]
         [MemberData(nameof(ShipmentSattusesData))]
-        public void SetShipmentStatusesDoubleObjectsFact(List<StatusShipment> shipments)
+        public void SetShipmentStatuses_DoubleObjects_Fact(List<StatusShipment> shipments)
         {
             var sp = (List<StatusShipment>)A.CollectionOfFake<StatusShipment>(10);
 
@@ -539,7 +541,7 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void SetShipmentStatusesFact()
+        public void SetShipmentStatuses_Fact()
         {
             var shipments = (List<StatusShipment>)A.CollectionOfFake<StatusShipment>(10);
             Random rand = new Random();

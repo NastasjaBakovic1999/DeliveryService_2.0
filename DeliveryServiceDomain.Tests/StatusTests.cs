@@ -21,7 +21,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(1, 1)]
         [InlineData(10, 10)]
         [InlineData(200, 200)]
-        public void SetStatusIdPositiveIntTheory(int expected, int id)
+        public void SetStatusId_PositiveInt_Theory(int expected, int id)
         {
             _sut.SetStatusId(id);
             Assert.Equal(expected, _sut.GetStatusId());
@@ -31,7 +31,7 @@ namespace DeliveryServiceDomain.Tests
         [InlineData(-1)]
         [InlineData(-10)]
         [InlineData(-199)]
-        public void SetStatusIdNegativeIntTheory(int id)
+        public void SetStatusId_NegativeIntOrZero_Theory(int id)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _sut.SetStatusId(id));
         }
@@ -39,14 +39,14 @@ namespace DeliveryServiceDomain.Tests
         [Theory]
         [InlineData("Kod kurira")]
         [InlineData("Isporucena")]
-        public void SetStatusNameTheory(string name)
+        public void SetStatusName_Theory(string name)
         {
             _sut.SetStatusName(name);
             Assert.Equal(name, _sut.GetStatusName());
         }
 
         [Fact]
-        public void SetStatusNameNullFact()
+        public void SetStatusName_Null_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetStatusName(null));
         }
@@ -55,20 +55,20 @@ namespace DeliveryServiceDomain.Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("        ")]
-        public void SetStatusNameEmptyStringTheory(string name)
+        public void SetStatusName_EmptyString_Theory(string name)
         {
             Assert.Throws<ArgumentException>(() => _sut.SetStatusName(name));
         }
 
         [Fact]
-        public void SetShipmentsNullListFact()
+        public void SetShipments_NullList_Fact()
         {
             Assert.Throws<ArgumentNullException>(() => _sut.SetShipments(null));
         }
 
         [Theory]
         [MemberData(nameof(ShipmentsData))]
-        public void SetShipmentsDoubleObjectsFact(List<StatusShipment> shipments)
+        public void SetShipments_DoubleObjects_Fact(List<StatusShipment> shipments)
         {
             var sp = (List<StatusShipment>)A.CollectionOfFake<StatusShipment>(10);
 
@@ -87,7 +87,7 @@ namespace DeliveryServiceDomain.Tests
         }
 
         [Fact]
-        public void SetShipmentsFact()
+        public void SetShipments_Fact()
         {
             var shipments = (List<StatusShipment>)A.CollectionOfFake<StatusShipment>(10);
 
@@ -131,14 +131,14 @@ namespace DeliveryServiceDomain.Tests
 
 
         [Fact]
-        public void GetShipmentsNullFact()
+        public void GetShipments_Null_Fact()
         {
             _sut.Shipments = null;
             Assert.Throws<NullReferenceException>(() => _sut.GetShipments());
         }
 
         [Fact]
-        public void GetShipmentsFact()
+        public void GetShipments_Fact()
         {
             _sut.Shipments = (List<StatusShipment>)A.CollectionOfFake<StatusShipment>(10);
             Assert.Equal(10, _sut.GetShipments().Count);
