@@ -180,5 +180,24 @@ namespace DeliveryServiceDomain
 
             Shipment = shipment;
         }
+
+        public override string ToString()
+        {
+            return $"{Shipment.ToString()} has {AdditionalService.AdditionalServiceName} additional service";
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is AdditionalServiceShipment shipment &&
+                   AdditionalServiceId == shipment.AdditionalServiceId &&
+                   EqualityComparer<AdditionalService>.Default.Equals(AdditionalService, shipment.AdditionalService) &&
+                   ShipmentId == shipment.ShipmentId &&
+                   EqualityComparer<Shipment>.Default.Equals(Shipment, shipment.Shipment);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(AdditionalServiceId, AdditionalService, ShipmentId, Shipment);
+        }
     }
 }

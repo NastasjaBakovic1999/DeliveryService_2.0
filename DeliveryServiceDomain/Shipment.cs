@@ -1011,5 +1011,10 @@ namespace DeliveryServiceDomain
 
             Price = price;
         }
+
+        public override string ToString()
+        {
+            return $"Shipment with {ShipmentCode} code";
+        }
     }
 }
