@@ -11,6 +11,20 @@ namespace DeliveryServiceDomain
     /// </summary>
     public class Shipment
     {
+        public Shipment()
+        {
+
+        }
+
+        public Shipment(int shipmentWeightId, int shipmentId, int customerId, int delivererId)
+        {
+            ShipmentWeightId = shipmentWeightId;
+            ShipmentId = shipmentId;
+            CustomerId = customerId;
+            DelivererId = delivererId;
+        }
+
+
         /// <value>
         ///     Id objekta klase ShipmentWeight
         /// </value>
@@ -114,7 +128,7 @@ namespace DeliveryServiceDomain
         /// <value>
         ///     Referenca na listu objekata agregirane klase AdditionalServiceShipment
         /// </value>
-        public List<AdditionalServiceShipment> AdditionalServices { get; set; }
+        public List<AdditionalServiceShipment> AdditionalServices { get; set; } = new List<AdditionalServiceShipment>();
 
         /// <remarks>  
         ///     <para>
@@ -129,7 +143,7 @@ namespace DeliveryServiceDomain
         /// <value>
         ///     Referenca na listu objekata agregirane klase StatusShipment
         /// </value>
-        public List<StatusShipment> ShipmentStatuses { get; set; }
+        public List<StatusShipment> ShipmentStatuses { get; set; } = new List<StatusShipment>();
 
         /// <value>
         ///     Napomena uz posiljku
@@ -159,7 +173,7 @@ namespace DeliveryServiceDomain
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetShipmentWeightId(int id)
         {
-            if(id <= 0)
+            if(id < 0 || id == 0)
             {
                 throw new ArgumentOutOfRangeException("Id cannot be lower than or equal to 0!");
             }
@@ -189,7 +203,7 @@ namespace DeliveryServiceDomain
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetShipmentId(int id)
         {
-            if (id <= 0)
+            if (id < 0 || id == 0)
             {
                 throw new ArgumentOutOfRangeException("Id cannot be lower than or equal to 0!");
             }
@@ -230,7 +244,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Code cannot be null!");
             }
 
-            if(code.Length == 0 || code == "")
+            if(code.Trim().Length == 0 || code == "")
             {
                 throw new ArgumentException("Code cannot be empty string!");
             }
@@ -270,7 +284,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Shipment Content cannot be null!");
             }
 
-            if (content.Length == 0 || content == "")
+            if (content.Trim().Length == 0 || content == "")
             {
                 throw new ArgumentException("Shipment Content cannot be empty string!");
             }
@@ -310,7 +324,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Sending City cannot be null!");
             }
 
-            if (sCity.Length == 0 || sCity == "")
+            if (sCity.Trim().Length == 0 || sCity == "")
             {
                 throw new ArgumentException("Sending City cannot be empty string!");
             }
@@ -355,7 +369,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Sending Address cannot be null!");
             }
 
-            if (sAddress.Length == 0 || sAddress == "")
+            if (sAddress.Trim().Length == 0 || sAddress == "")
             {
                 throw new ArgumentException("Sending Address cannot be empty string!");
             }
@@ -395,7 +409,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Code cannot be null!");
             }
 
-            if (code.Length == 0 || code == "")
+            if (code.Trim().Length == 0 || code == "")
             {
                 throw new ArgumentException("Code cannot be empty string!");
             }
@@ -440,7 +454,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Receiving City cannot be null!");
             }
 
-            if (rCity.Length == 0 || rCity == "")
+            if (rCity.Trim().Length == 0 || rCity == "")
             {
                 throw new ArgumentException("Receiving City cannot be empty string!");
             }
@@ -485,7 +499,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Receiving Address cannot be null!");
             }
 
-            if (rAddress.Length == 0 || rAddress == "")
+            if (rAddress.Trim().Length == 0 || rAddress == "")
             {
                 throw new ArgumentException("Receiving Address cannot be empty string!");
             }
@@ -530,7 +544,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Code cannot be null!");
             }
 
-            if (code.Length == 0 || code == "")
+            if (code.Trim().Length == 0 || code == "")
             {
                 throw new ArgumentException("Code cannot be empty string!");
             }
@@ -570,7 +584,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Name cannot be null!");
             }
 
-            if (name.Length == 0 || name == "")
+            if (name.Trim().Length == 0 || name == "")
             {
                 throw new ArgumentException("Name cannot be empty string!");
             }
@@ -610,7 +624,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Phone cannot be null!");
             }
 
-            if (phone.Length == 0 || phone == "")
+            if (phone.Trim().Length == 0 || phone == "")
             {
                 throw new ArgumentException("Phone cannot be empty string!");
             }
@@ -650,7 +664,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Note cannot be null!");
             }
 
-            if (note.Length == 0 || note == "")
+            if (note.Trim().Length == 0 || note == "")
             {
                 throw new ArgumentException("Note cannot be empty string!");
             }
@@ -710,7 +724,7 @@ namespace DeliveryServiceDomain
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetDelivererId(int id)
         {
-            if (id <= 0)
+            if (id < 0 || id == 0 )
             {
                 throw new ArgumentOutOfRangeException("Id cannot be lower than or equal to 0!");
             }
@@ -776,7 +790,7 @@ namespace DeliveryServiceDomain
         /// <exception cref="NullReferenceException"></exception>
         public Customer GetCustomer()
         {
-            if (ShipmentWeight == null)
+            if (Customer == null)
             {
                 throw new NullReferenceException("Customer is null!");
             }
@@ -899,7 +913,8 @@ namespace DeliveryServiceDomain
 
             foreach(AdditionalServiceShipment additionalService in addss)
             {
-                if (AdditionalServices.Contains(additionalService))
+                if (AdditionalServices.Any(a => a.AdditionalServiceId == additionalService.AdditionalServiceId 
+                                                && a.ShipmentId == additionalService.ShipmentId) )
                 {
                     throw new ArgumentException("Additional services list already contains some of the forwarded objects!");
                 }
@@ -948,7 +963,7 @@ namespace DeliveryServiceDomain
         /// <param name="addss">Lista posiljaka i njihovih statusa</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public void SetAdShipmentStatuses(List<StatusShipment> ss)
+        public void SetShipmentStatuses(List<StatusShipment> ss)
         {
             if (ss == null)
             {
@@ -957,7 +972,8 @@ namespace DeliveryServiceDomain
 
             foreach (StatusShipment statusShipment in ss)
             {
-                if (ShipmentStatuses.Contains(statusShipment))
+                if (ShipmentStatuses.Any(a => a.ShipmentId == statusShipment.ShipmentId &&
+                                               a.StatusId == statusShipment.StatusId))
                 {
                     throw new ArgumentException("Status shipments list already contains some of the forwarded objects!");
                 }

@@ -47,7 +47,7 @@ namespace DeliveryServiceDomain
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetDateOfEmployment(DateTime doe)
         {
-            if(doe > DateTime.Now)
+            if(doe > DateTime.Now || doe > DateTime.Today)
             {
                 throw new ArgumentOutOfRangeException("Date Of Employment cannot be in the future!");
             }

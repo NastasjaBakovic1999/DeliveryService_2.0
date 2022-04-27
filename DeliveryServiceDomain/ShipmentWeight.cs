@@ -35,7 +35,7 @@ namespace DeliveryServiceDomain
         ///           ima kljucnu ulugo pri mapiranju nekim ORM alatom <br />
         ///           ali i koriscenju objekata u kontrolerima
         /// </remarks>
-        public List<Shipment> Shipments { get; set; }
+        public List<Shipment> Shipments { get; set; } = new List<Shipment>();
 
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace DeliveryServiceDomain
                 throw new ArgumentNullException("Shipment Weight Descpription cannot be null!");
             }
 
-            if (desc.Length == 0 || desc == "")
+            if (desc.Trim().Length == 0 || desc == "")
             {
                 throw new ArgumentException("Shipment Weight Descpription cannot be empty string!");
             }
@@ -177,7 +177,7 @@ namespace DeliveryServiceDomain
         /// <param name="addss">Lista posiljaka koje imaju odredjenu tezinu</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public void SetAdShipmentStatuses(List<Shipment> ss)
+        public void SetShipmens(List<Shipment> ss)
         {
             if (ss == null)
             {
@@ -186,7 +186,8 @@ namespace DeliveryServiceDomain
 
             foreach (Shipment shipment in ss)
             {
-                if (Shipments.Contains(shipment))
+                if (Shipments.Any(a => a.ShipmentId == shipment.ShipmentId && a.DelivererId == shipment.DelivererId 
+                                    && a.CustomerId == shipment.CustomerId))
                 {
                     throw new ArgumentException("Shipments list already contains some of the forwarded objects!");
                 }
