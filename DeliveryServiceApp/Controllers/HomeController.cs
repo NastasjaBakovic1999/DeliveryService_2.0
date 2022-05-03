@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DeliveryServiceApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeliveryServiceApp.Controllers
@@ -49,6 +50,19 @@ namespace DeliveryServiceApp.Controllers
         public IActionResult AccesDenied()
         {
             return View();
+        }
+
+        /// <summary>
+        ///     Post akcija koja vraca View razor stranice koji predstavlja stranicu<br />
+        ///     koja obavestava korisnika da je doslo do greske prilikom vrsenja zahteva
+        /// </summary>
+        /// <param name="message">Poruka koju prosledjuje bacena greska</param>
+        /// <returns>Razor stranica</returns>
+        [AllowAnonymous]
+        public IActionResult Error(string message)
+        {
+            ErrorViewModel model = new ErrorViewModel { Message = message };
+            return View(model);
         }
     }
 }
