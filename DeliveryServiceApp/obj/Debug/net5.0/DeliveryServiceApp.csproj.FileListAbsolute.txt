@@ -306,7 +306,6 @@ G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\Del
 G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\DeliveryServiceApp.RazorCoreGenerate.cache
 G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Authentication\Login.cshtml.g.cs
 G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Authentication\Register.cshtml.g.cs
-G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Error.cshtml.g.cs
 G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Home\AccesDenied.cshtml.g.cs
 G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs

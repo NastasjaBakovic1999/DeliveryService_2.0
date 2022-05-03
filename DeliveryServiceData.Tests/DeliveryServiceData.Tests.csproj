@@ -20,4 +20,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DeliveryServiceApp\DeliveryServiceApp.csproj" />
+    <ProjectReference Include="..\DeliveryServiceData\DeliveryServiceData.csproj" />
+  </ItemGroup>
+
 </Project>
