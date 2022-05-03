@@ -1,9 +1,11 @@
 ﻿using DeliveryServiceApp.Models;
+using DeliveryServiceApp.Services.Interfaces;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceDomain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace DeliveryServiceApp.Controllers
@@ -49,32 +51,26 @@ namespace DeliveryServiceApp.Controllers
         private readonly UserManager<Person> userManager;
 
         /// <value>
-        ///     Polje koje prihvata referencu na interfejs <seealso cref="IPersonUnitOfWork"/>
+        ///     Polje koje prihvata referencu na intancu klase koja implementira interfejs <seealso cref="IServiceCustomer"/>
         /// </value>
-        /// <remarks>
-        ///     <para>
-        ///         U kontroleru, ovom polju se dodeljuje referenca preko dependecy injection-a, <br />
-        ///         sto olaksava kasnije unit testiranje i omogucuje lakse refaktorisanje koda.
-        ///     </para>
-        ///     <para>
-        ///         Interfejs <seealso cref="IPersonUnitOfWork"/> kao atribute ima reference na interfejse repozitorijuma <br />
-        ///         domenskih klasa. Implementacija interfejsa IPersonUnitOfWork, kao i interfejsa repozitorijuma <br />
-        ///         domenskih klasa ima ulogu manipulacije nad tabelama relacione baze podataka koja je <br />
-        ///         povezana sa datim softverskim sistemom.
-        ///     </para>
-        /// </remarks>
-        private readonly IPersonUnitOfWork unitOfWork;
+        private readonly IServiceCustomer serviceCustomer;
+        /// <value>
+        ///     Polje koje prihvata referencu na intancu klase koja implementira interfejs <seealso cref="IServiceDeliverer"/>
+        /// </value>
+        private readonly IServiceDeliverer serviceDeliverer;
 
 
         /// <summary>
         ///     Konstruktor koji vrsi dependency injection
         /// </summary>
-        /// <param name="unitOfWork">Interfejs <seealso cref="IUnitOfWork"/></param>
         /// <param name="userManager">Klasa <seealso cref="UserManager{TUser}"/></param>
-        public UserController(UserManager<Person> userManager, IPersonUnitOfWork unitOfWork)
+        /// <param name="serviceCustomer">Interfejs <seealse cref="IServiceCustomer"/></param>
+        /// <param name="serviceDeliverer">Interfejs <seealse cref="IServiceDeliverer"/></param>
+        public UserController(UserManager<Person> userManager, IServiceCustomer serviceCustomer, IServiceDeliverer serviceDeliverer)
         {
             this.userManager = userManager;
-            this.unitOfWork = unitOfWork;
+            this.serviceCustomer = serviceCustomer;
+            this.serviceDeliverer = serviceDeliverer;
         }
 
         /// <summary>
@@ -107,19 +103,18 @@ namespace DeliveryServiceApp.Controllers
         /// </para>
         /// </remarks>
         /// <returns>Razor stranica</returns>
+        /// <exception cref="Exception"></exception>
         [Authorize(Roles = "Customer, Deliverer")]
         public async Task<IActionResult> Index()
         {
             UserProfileViewModel model = new UserProfileViewModel();
 
-            int userId = -1;
-            int.TryParse(userManager.GetUserId(HttpContext.User), out userId);
-
-            if (userId != -1)
+            try
             {
-               var user =  await userManager.FindByIdAsync(userId.ToString());
-                
-                if(user != null)
+                var userId = int.Parse(userManager.GetUserId(HttpContext.User));
+                var user = await userManager.FindByIdAsync(userId.ToString());
+
+                if (user != null)
                 {
                     model.Id = user.Id;
                     model.FirstName = user.FirstName;
@@ -131,13 +126,13 @@ namespace DeliveryServiceApp.Controllers
                     var role = await userManager.GetRolesAsync(user);
                     if (role.Contains("Customer"))
                     {
-                        var customer = unitOfWork.Customer.FindByID(userId);
+                        var customer = serviceCustomer.FindByID(userId);
                         model.Address = customer.Address;
                         model.PostalCode = customer.PostalCode;
                     }
                     else
                     {
-                        var deliverer = unitOfWork.Deliverer.FindByID(userId);
+                        var deliverer = serviceDeliverer.FindByID(userId);
                         model.DateOfEmployment = deliverer.DateOfEmployment;
                     }
 
@@ -145,12 +140,13 @@ namespace DeliveryServiceApp.Controllers
                 }
                 else
                 {
-                    return View("Error");
+                    return RedirectToAction("Error", "Home", new { Message = "Error reading user data!" });
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return View("Error");
+
+                return RedirectToAction("Error", "Home", new { Message = ex.Message });
             }
         }
 
@@ -196,42 +192,53 @@ namespace DeliveryServiceApp.Controllers
         ///     </list>
         /// </summary>
         /// <param name="model">Model <seealso cref="UserProfileViewModel"/> koji sadrzi izmenjene podatke o korisniku</param>
+        /// <exception cref="Exception"></exception>
         [HttpPost]
         public async  Task<IActionResult> Edited(UserProfileViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View("Edit", model);
-            }
+                var user = await userManager.FindByIdAsync(model.Id.ToString());
 
-            var user = await userManager.FindByIdAsync(model.Id.ToString());
-
-            if (user != null)
-            {
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-                user.UserName = model.Username;
-                user.Email = model.Email;
-                user.PhoneNumber = model.PhoneNumber;
-
-                await userManager.UpdateAsync(user);
-
-                var role = await userManager.GetRolesAsync(user);
-                if (role.Contains("Customer"))
+                if (!ModelState.IsValid)
                 {
+                    return View("Edit", model);
+                }
+
+                if (user != null && !string.IsNullOrEmpty(model.FirstName) && !string.IsNullOrEmpty(model.LastName)
+                    && !string.IsNullOrEmpty(model.Email) && !string.IsNullOrEmpty(model.PhoneNumber))
+                {
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.Email = model.Email;
+                    user.PhoneNumber = model.PhoneNumber;
+
+                    await userManager.UpdateAsync(user);
+
                     Customer c = new Customer
                     {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.Email,
+                        PhoneNumber = model.PhoneNumber,
                         Address = model.Address,
                         PostalCode = model.PostalCode
                     };
 
-                    unitOfWork.Customer.Edit(c);
+                    serviceCustomer.Edit(c);
+
+                    return View("Detail", model);
                 }
-                return View("Detail", model);
+                else
+                {
+                    return RedirectToAction("Error", "Home", new { Message = "Error reading user data!" });
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                return View("Error");
+
+                return RedirectToAction("Error", "Home", new { Message = ex.Message });
             }
         }
     }
