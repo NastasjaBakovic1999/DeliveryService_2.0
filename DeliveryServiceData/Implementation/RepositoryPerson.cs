@@ -16,24 +16,30 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(Person entity)
-        {
-            context.Persons.Add(entity);
-        }
-
-        public void Delete(Person entity)
-        {
-            context.Persons.Remove(entity);
-        }
-
         public Person FindByID(int id, params int[] ids)
         {
-            return context.Persons.Find(id);
+            try
+            {
+                return context.Persons.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading person! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public List<Person> GetAll()
         {
-            return context.Persons.ToList();
+            try
+            {
+                return context.Persons.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading all persons! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
     }
 }

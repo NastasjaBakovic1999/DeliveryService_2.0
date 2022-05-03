@@ -16,24 +16,30 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(Deliverer entity)
-        {
-            context.Deliverers.Add(entity);
-        }
-
-        public void Delete(Deliverer entity)
-        {
-            context.Deliverers.Remove(entity);
-        }
-
         public Deliverer FindByID(int id, params int[] ids)
         {
-            return context.Deliverers.Find(id);
+            try
+            {
+                return context.Deliverers.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading courier! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public List<Deliverer> GetAll()
         {
-            return context.Deliverers.ToList();
+            try
+            {
+                return context.Deliverers.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading all couriers! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
     }
 }

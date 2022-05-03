@@ -16,29 +16,44 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(Customer entity)
-        {
-            context.Customers.Add(entity);
-        }
-
-        public void Delete(Customer entity)
-        {
-            context.Customers.Remove(entity);
-        }
-
         public Customer FindByID(int id, params int[] ids)
         {
-            return context.Customers.Find(id);
+            try
+            {
+                return context.Customers.Find(id);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading user! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public List<Customer> GetAll()
         {
-            return context.Customers.ToList();
+            try
+            {
+                return context.Customers.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading all users! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public void Edit(Customer entity)
         {
-            context.Customers.Update(entity);
+            try
+            {
+                context.Customers.Update(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error changing user data! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
     }
 }
