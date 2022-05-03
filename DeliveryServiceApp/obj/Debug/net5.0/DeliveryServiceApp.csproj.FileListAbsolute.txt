@@ -332,3 +332,7 @@ G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\ref
 G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\DeliveryServiceApp.pdb
 G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\DeliveryServiceApp.genruntimeconfig.cache
 G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\obj\Debug\net5.0\ref\DeliveryServiceApp.dll
+G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\bin\Debug\net5.0\xunit.abstractions.dll
+G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\bin\Debug\net5.0\xunit.assert.dll
+G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\bin\Debug\net5.0\xunit.core.dll
+G:\NaprednoProgramiranje\DeliveryService\DeliveryServiceApp\bin\Debug\net5.0\xunit.execution.dotnet.dll

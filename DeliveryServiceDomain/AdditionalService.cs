@@ -214,5 +214,23 @@ namespace DeliveryServiceDomain
             Shipments.AddRange(shipments);
         }
 
+        public override bool Equals(object obj)
+        {
+            if(obj is AdditionalService service)
+            {
+                if(service.AdditionalServiceId == AdditionalServiceId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public override string ToString()
+        {
+            return $"{AdditionalServiceName} = {AdditionalServicePrice} RSD";
+        }
+
     }
 }
