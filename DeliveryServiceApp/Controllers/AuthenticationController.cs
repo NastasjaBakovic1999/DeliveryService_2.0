@@ -1,5 +1,6 @@
 ﻿using DeliveryServiceApp.Models;
 using DeliveryServiceDomain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -133,6 +134,12 @@ namespace DeliveryServiceApp.Controllers
                 PostalCode = model.PostalCode
             };
 
+            if (string.IsNullOrEmpty(model.Password) || string.IsNullOrEmpty(model.PasswordConfirm) || !model.Password.Equals(model.PasswordConfirm))
+            {
+                ModelState.AddModelError("Password", "Password not added");
+                return View();
+            }
+
             var result = await userManager.CreateAsync(customer, model.Password);
 
             if (result.Succeeded)
@@ -141,11 +148,11 @@ namespace DeliveryServiceApp.Controllers
 
                 var roleresult = await userManager.AddToRoleAsync(currentUser, "Customer");
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Authentication");
             }
             else
             {
-                if(result.Errors.Any(e => e.Code.Contains("DuplicateUserName")))
+                if (result.Errors.Any(e => e.Code.Contains("DuplicateUserName")))
                 {
                     ModelState.AddModelError("Username", result.Errors.FirstOrDefault(e => e.Code == "DuplicateUserName")?.Description);
                 }
@@ -199,8 +206,22 @@ namespace DeliveryServiceApp.Controllers
         {
             var result = await signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
 
+
             if (result.Succeeded)
             {
+                var user = await userManager.FindByNameAsync(model.Username);
+                var roles = await userManager.GetRolesAsync(user);
+
+                if (roles.Contains("Deliverer"))
+                {
+                    HttpContext.Session.SetString("userrole", "Deliverer");
+                }
+
+                if (roles.Contains("Customer"))
+                {
+                    HttpContext.Session.SetString("userrole", "Customer");
+                }
+
                 return RedirectToAction("Index", "Home");
             }
 
