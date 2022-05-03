@@ -18,32 +18,55 @@ namespace DeliveryServiceData.Implementation
 
         public void Add(StatusShipment statusShipment)
         {
-            context.StatusShipments.Add(statusShipment);
+            try
+            {
+                context.StatusShipments.Add(statusShipment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error saving new shipment status! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
-        public void Delete(StatusShipment statusShipment)
-        {
-            context.StatusShipments.Remove(statusShipment);
-        }
 
         public StatusShipment FindByID(int id, params int[] ids)
         {
-            return context.StatusShipments.Find(id, ids[0]);
+            try
+            {
+                return context.StatusShipments.Find(id, ids[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading shipment and its status! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public List<StatusShipment> GetAll()
         {
-            return context.StatusShipments.ToList();
-        }
-
-        public void Edit(StatusShipment statusShipment)
-        {
-            context.StatusShipments.Update(statusShipment);
+            try
+            {
+                return context.StatusShipments.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading all shipments with their statuses! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public List<StatusShipment> GetAllByShipmentId(int shipmentId)
         {
-            return context.StatusShipments.Where(ss => ss.ShipmentId == shipmentId).ToList();
+            try
+            {
+                return context.StatusShipments.Where(ss => ss.ShipmentId == shipmentId).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading shipment and its status based on shipment id! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
     }
 }

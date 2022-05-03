@@ -18,51 +18,68 @@ namespace DeliveryServiceData.Implementation
 
         public void Add(Shipment shipment)
         {
-            context.Shipments.Add(shipment);
-        }
-
-        public void Delete(Shipment shipment)
-        {
-            context.Shipments.Remove(shipment);
+            try
+            {
+                context.Shipments.Add(shipment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error saving new shipment! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public Shipment FindByID(int id, params int[] ids)
         {
-            return context.Shipments.Find(id);
+            try
+            {
+                return context.Shipments.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading shipment!{Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public List<Shipment> GetAll()
         {
-            return context.Shipments.ToList();
+            try
+            {
+                return context.Shipments.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading all shipments!{Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public Shipment FindByCode(string code)
         {
-            return context.Shipments.FirstOrDefault(s => s.ShipmentCode == code);
+            try
+            {
+                return context.Shipments.SingleOrDefault(s => s.ShipmentCode == code);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading shipment based on its code!{Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public List<Shipment> GetAllOfSpecifiedUser(int? userId)
         {
-            if (userId != null)
+            try
             {
                 return context.Shipments.Where(s => s.CustomerId == userId).ToList();
             }
-            else
+            catch (Exception ex)
             {
-                return null;
+                throw new Exception($"Error returning all shipments of a specific user!{Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
             }
-        }
 
-        public List<Shipment> GetAllOfSpecifiedDeliverer(int? delivererId)
-        {
-            if(delivererId != null)
-            {
-                return context.Shipments.Where(s => s.DelivererId == delivererId).ToList();
-            }
-            else
-            {
-                return null;
-            }
         }
 
     }

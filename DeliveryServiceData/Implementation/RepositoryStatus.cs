@@ -16,34 +16,43 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(Status status)
-        {
-            context.Statuses.Add(status);
-        }
-
-        public void Delete(Status status)
-        {
-            context.Statuses.Remove(status);
-        }
-
         public Status FindByID(int id, params int[] ids)
         {
-            return context.Statuses.Find(id);
+            try
+            {
+                return context.Statuses.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading status! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public List<Status> GetAll()
         {
-            return context.Statuses.ToList();
-        }
-
-        public void Edit(Status status)
-        {
-            context.Statuses.Update(status);
+            try
+            {
+                return context.Statuses.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading all statuses! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public Status GetByName(string name)
         {
-            return context.Statuses.FirstOrDefault(s => s.StatusName == name);
+            try
+            {
+                return context.Statuses.SingleOrDefault(s => s.StatusName == name);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading status with specific name! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
     }
 }

@@ -16,24 +16,30 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(ShipmentWeight entity)
-        {
-            context.ShipmentWeights.Add(entity);
-        }
-
-        public void Delete(ShipmentWeight entity)
-        {
-            context.ShipmentWeights.Remove(entity);
-        }
-
         public ShipmentWeight FindByID(int id, params int[] ids)
         {
-            return context.ShipmentWeights.Find(id);
+            try
+            {
+                return context.ShipmentWeights.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading shipment weight! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public List<ShipmentWeight> GetAll()
         {
-            return context.ShipmentWeights.ToList();
+            try
+            {
+                return context.ShipmentWeights.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading all shipment weights! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
     }
 }
