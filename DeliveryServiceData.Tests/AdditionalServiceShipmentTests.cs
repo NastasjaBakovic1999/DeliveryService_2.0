@@ -1,15 +1,11 @@
 ﻿using DeliveryServiceApp.Services.Implementation;
 using DeliveryServiceData.UnitOfWork;
-using DeliveryServiceDomain;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace DeliveryServiceAppTests
+namespace DeliveryServiceDomain.Tests
 {
     public class AdditionalServiceShipmentTests
     {

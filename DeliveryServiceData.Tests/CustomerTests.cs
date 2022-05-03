@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DeliveryServiceAppTests
+namespace DeliveryServiceDomain.Tests
 {
     public class CustomerTests
     {
