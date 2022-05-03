@@ -10,8 +10,6 @@ namespace DeliveryServiceData
 {
     public interface IRepositoryAdditionalServiceShipment : IRepository<AdditionalServiceShipment>
     {
-        public void Edit(AdditionalServiceShipment additionalServiceShipment);
-        public List<AdditionalServiceShipment> GetByShipmentId(int shipmentId);
-        public List<AdditionalServiceShipment> Search(Expression<Func<AdditionalServiceShipment, bool>> pred);
+        public void Add(AdditionalServiceShipment additionalServiceShipment);
     }
 }

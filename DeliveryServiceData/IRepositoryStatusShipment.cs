@@ -9,8 +9,7 @@ namespace DeliveryServiceData
 {
     public interface IRepositoryStatusShipment : IRepository<StatusShipment>
     {
-        public void Edit(StatusShipment statusShipment);
-
+        public void Add(StatusShipment statusShipment);
         public List<StatusShipment> GetAllByShipmentId(int shipmentId);
     }
 }

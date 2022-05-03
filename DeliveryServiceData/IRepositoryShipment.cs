@@ -9,8 +9,8 @@ namespace DeliveryServiceData
 {
     public interface IRepositoryShipment : IRepository<Shipment>
     {
+        public void Add(Shipment shipment);
         public List<Shipment> GetAllOfSpecifiedUser(int? userId);
-        public List<Shipment> GetAllOfSpecifiedDeliverer(int? delivererId);
         public Shipment FindByCode(string code);
     }
 }
