@@ -1,4 +1,5 @@
 ﻿using DeliveryServiceApp.Models;
+using DeliveryServiceApp.Services.Interfaces;
 using DeliveryServiceData.UnitOfWork;
 using DeliveryServiceData.UnitOfWork.Implementation;
 using DeliveryServiceDomain;
@@ -31,21 +32,29 @@ namespace DeliveryServiceApp.Controllers
     public class ShipmentController : Controller
     {
         /// <value>
-        ///     Polje koje prihvata referencu na interfejs <seealso cref="IUnitOfWork"/>
+        ///     Polje koje prihvata referencu na intancu klase koja implementira interfejs <seealso cref="IServiceAdditonalService"/>
         /// </value>
-        /// <remarks>
-        ///     <para>
-        ///         U kontroleru, ovom polju se dodeljuje referenca preko dependecy injection-a, <br />
-        ///         sto olaksava kasnije unit testiranje i omogucuje lakse refaktorisanje koda.
-        ///     </para>
-        ///     <para>
-        ///         Interfejs <seealso cref="IUnitOfWork"/> kao atribute ima reference na interfejse repozitorijuma <br />
-        ///         domenskih klasa. Implementacija interfejsa IUnitOfWork, kao i interfejsa repozitorijuma <br />
-        ///         domenskih klasa ima ulogu manipulacije nad tabelama relacione baze podataka koja je <br />
-        ///         povezana sa datim softverskim sistemom.
-        ///     </para>
-        /// </remarks>
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IServiceAdditonalService serviceAdditonalService;
+        /// <value>
+        ///     Polje koje prihvata referencu na intancu klase koja implementira interfejs <seealso cref="IServiceShipmentWeight"/>
+        /// </value>
+        private readonly IServiceShipmentWeight serviceShipmentWeight;
+        /// <value>
+        ///     Polje koje prihvata referencu na intancu klase koja implementira interfejs <seealso cref="IServiceShipment"/>
+        /// </value>
+        private readonly IServiceShipment serviceShipment;
+        /// <value>
+        ///     Polje koje prihvata referencu na intancu klase koja implementira interfejs <seealso cref="IServiceAddionalServiceShipment"/>
+        /// </value>
+        private readonly IServiceAddionalServiceShipment serviceAddionalServiceShipment;
+        /// <value>
+        ///     Polje koje prihvata referencu na intancu klase koja implementira interfejs <seealso cref="IServiceStatus"/>
+        /// </value>
+        private readonly IServiceStatus serviceStatus;
+        /// <value>
+        ///     Polje koje prihvata referencu na intancu klase koja implementira interfejs <seealso cref="IServiceStatusShipment"/>
+        /// </value>
+        private readonly IServiceStatusShipment serviceStatusShipment;
 
         /// <value>
         ///     Polje koje prihvata referencu na instancu objekta UserManager klase
@@ -72,12 +81,24 @@ namespace DeliveryServiceApp.Controllers
         /// <summary>
         ///     Konstruktor koji vrsi dependency injection
         /// </summary>
-        /// <param name="unitOfWork">Interfejs <seealso cref="IUnitOfWork"/></param>
         /// <param name="userManager">Klasa <seealso cref="SignInManager{TUser}"/></param>
-        public ShipmentController(IUnitOfWork unitOfWork, UserManager<Person> userManager)
+        /// <param name="serviceAdditonalService">Interefjs <seealso cref="IServiceAdditonalService"/></param>
+        /// <param name="serviceShipmentWeight">Interfejs <seealso cref="IServiceShipmentWeight"/></param>
+        /// <param name="serviceShipment">Interfejs <seealso cref="IServiceShipment"/></param>
+        /// <param name="serviceAddionalServiceShipment">Inetrefejs <seealso cref="IServiceAddionalServiceShipment"/></param>
+        /// <param name="serviceStatus">Interfejs <seealso cref="IServiceStatus"/></param>
+        /// <param name="serviceStatusShipment"><Interfejs <seealso cref="IServiceStatusShipment"/></param>
+        public ShipmentController(UserManager<Person> userManager, IServiceAdditonalService serviceAdditonalService, IServiceShipmentWeight serviceShipmentWeight,
+                                   IServiceShipment serviceShipment, IServiceAddionalServiceShipment serviceAddionalServiceShipment, IServiceStatus serviceStatus,
+                                   IServiceStatusShipment serviceStatusShipment)
         {
-            this.unitOfWork = unitOfWork;
             this.userManager = userManager;
+            this.serviceAdditonalService = serviceAdditonalService;
+            this.serviceShipmentWeight = serviceShipmentWeight;
+            this.serviceShipment = serviceShipment;
+            this.serviceAddionalServiceShipment = serviceAddionalServiceShipment;
+            this.serviceStatus = serviceStatus;
+            this.serviceStatusShipment = serviceStatusShipment;
         }
 
         /// <summary>
@@ -96,22 +117,31 @@ namespace DeliveryServiceApp.Controllers
         ///     </para>
         /// </remarks>
         /// <returns>Razor stranica</returns>
+        /// <exception cref="Exception">Ukoliko dodje do greske pri ucitavanju podataka za <br />
+        /// formu zakreiranje posiljke </exception>
         [Authorize(Roles = "Customer")]
         public IActionResult Create()
         {
-            List<AdditionalService> additionalServicesList = unitOfWork.AdditionalService.GetAll();
-            List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
-
-            List<ShipmentWeight> shipmentWeightList = unitOfWork.ShipmentWeight.GetAll();
-            List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
-
-            CreateShipmentViewModel model = new CreateShipmentViewModel
+            try
             {
-                AdditionalServices = selectAdditionalServicesList,
-                ShipmentWeights = selectShipmentWeightList
-            };
+                List<AdditionalService> additionalServicesList = serviceAdditonalService.GetAll();
+                List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
 
-            return View(model);
+                List<ShipmentWeight> shipmentWeightList = serviceShipmentWeight.GetAll();
+                List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
+
+                CreateShipmentViewModel model = new CreateShipmentViewModel
+                {
+                    AdditionalServices = selectAdditionalServicesList,
+                    ShipmentWeights = selectShipmentWeightList
+                };
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Home", new { Message = ex.Message });
+            }
         }
 
         /// <summary>
@@ -143,92 +173,99 @@ namespace DeliveryServiceApp.Controllers
         ///     </para>
         /// </remarks>
         /// <param name="model">Model <seealso cref="CreateShipmentViewModel"/> koji sadrzi unete podatke o posiljci</param>
+        /// <exception cref="Exception"></exception>
         [HttpPost]
         [Authorize(Roles = "Customer")]
         public IActionResult Create(CreateShipmentViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                List<AdditionalService> additionalServicesList = unitOfWork.AdditionalService.GetAll();
-                List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
+                if (!ModelState.IsValid)
+                {
+                    List<AdditionalService> additionalServicesList = serviceAdditonalService.GetAll();
+                    List<SelectListItem> selectAdditionalServicesList = additionalServicesList.Select(s => new SelectListItem { Text = s.AdditionalServiceName + " - " + s.AdditionalServicePrice + " RSD", Value = s.AdditionalServiceId.ToString() }).ToList();
 
-                List<ShipmentWeight> shipmentWeightList = unitOfWork.ShipmentWeight.GetAll();
-                List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
+                    List<ShipmentWeight> shipmentWeightList = serviceShipmentWeight.GetAll();
+                    List<SelectListItem> selectShipmentWeightList = shipmentWeightList.Select(s => new SelectListItem { Text = s.ShipmentWeightDescpription, Value = s.ShipmentWeightId.ToString() }).ToList();
 
-                model.AdditionalServices = selectAdditionalServicesList;
-                model.ShipmentWeights = selectShipmentWeightList;
+                    model.AdditionalServices = selectAdditionalServicesList;
+                    model.ShipmentWeights = selectShipmentWeightList;
 
-                return View(model);
-            }
+                    return View(model);
+                }
 
-            Shipment shipment = new Shipment
-            {
-                ShipmentWeightId = model.ShipmentWeightId,
-                ShipmentContent = model.ShipmentContent,
-                ContactPersonName = model.ContactPersonName,
-                ContactPersonPhone = model.ContactPersonPhone,
-                Note = model.Note,
-                ReceivingAddress = model.ReceivingAddress,
-                ReceivingCity = model.ReceivingCity,
-                ReceivingPostalCode = model.ReceivingPostalCode,
-                SendingAddress = model.SendingAddress,
-                SendingCity = model.SendingCity,
-                SendingPostalCode = model.SendingPostalCode,
-                DelivererId = 3
-            };
+                Shipment shipment = new Shipment
+                {
+                    ShipmentWeightId = model.ShipmentWeightId,
+                    ShipmentContent = model.ShipmentContent,
+                    ContactPersonName = model.ContactPersonName,
+                    ContactPersonPhone = model.ContactPersonPhone,
+                    Note = model.Note,
+                    ReceivingAddress = model.ReceivingAddress,
+                    ReceivingCity = model.ReceivingCity,
+                    ReceivingPostalCode = model.ReceivingPostalCode,
+                    SendingAddress = model.SendingAddress,
+                    SendingCity = model.SendingCity,
+                    SendingPostalCode = model.SendingPostalCode,
+                    DelivererId = 3
+                };
 
-            Random rand = new Random();
-            const string chars = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
-            shipment.ShipmentCode = new string(Enumerable.Repeat(chars, 11)
-                                                          .Select(s => s[rand.Next(chars.Length)])
-                                                          .ToArray());
+                Random rand = new Random();
+                const string chars = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
+                shipment.ShipmentCode = new string(Enumerable.Repeat(chars, 11)
+                                                              .Select(s => s[rand.Next(chars.Length)])
+                                                              .ToArray());
 
 
-            int userId = -1;
-            int.TryParse(userManager.GetUserId(HttpContext.User), out userId);
+                int userId = -1;
+                int.TryParse(userManager.GetUserId(HttpContext.User), out userId);
 
-            if (userId != -1)
-            {
-                shipment.CustomerId = userId;
-            }
+                if (userId != -1)
+                {
+                    shipment.CustomerId = userId;
+                }
 
-            double weightPrice = unitOfWork.ShipmentWeight.FindByID(model.ShipmentWeightId).ShipmentWeightPrice;
-            double additionalServicesPrice = 0;
+                double weightPrice = serviceShipmentWeight.FindByID(model.ShipmentWeightId).ShipmentWeightPrice;
+                double additionalServicesPrice = 0;
 
-            if (model.Services != null && model.Services.Count() > 0)
-            {
-                List<AdditionalService> additionalServices = unitOfWork.AdditionalService.GetAll();
+                if (model.Services != null && model.Services.Count() > 0)
+                {
+                    List<AdditionalService> additionalServices = serviceAdditonalService.GetAll();
+
+                    foreach (AdditonalServiceViewModel sa in model.Services)
+                    {
+                        additionalServicesPrice += additionalServices.Find(s => s.AdditionalServiceId == sa.AdditionalServiceId).AdditionalServicePrice;
+                    }
+                }
+
+                shipment.Price = weightPrice + additionalServicesPrice;
+
+                serviceShipment.Add(shipment);
 
                 foreach (AdditonalServiceViewModel sa in model.Services)
                 {
-                    additionalServicesPrice += additionalServices.Find(s => s.AdditionalServiceId == sa.AdditionalServiceId).AdditionalServicePrice;
+                    AdditionalServiceShipment ass = new AdditionalServiceShipment();
+                    ass.AdditionalServiceId = sa.AdditionalServiceId;
+                    ass.ShipmentId = shipment.ShipmentId;
+                    serviceAddionalServiceShipment.Add(ass);
                 }
+
+                StatusShipment ss = new StatusShipment
+                {
+                    ShipmentId = shipment.ShipmentId,
+                    StatusId = serviceStatus.GetByName("Scheduled").StatusId,
+                    StatusTime = DateTime.Now
+                };
+
+                serviceStatusShipment.Add(ss);
+
+                return RedirectToAction("CustomerShipments");
+
             }
-
-            shipment.Price = weightPrice + additionalServicesPrice;
-
-            unitOfWork.Shipment.Add(shipment);
-            unitOfWork.Commit();
-
-            foreach (AdditonalServiceViewModel sa in model.Services)
+            catch (Exception ex)
             {
-                AdditionalServiceShipment ass = new AdditionalServiceShipment();
-                ass.AdditionalServiceId = sa.AdditionalServiceId;
-                ass.ShipmentId = shipment.ShipmentId;
-                unitOfWork.AdditionalServiceShipment.Add(ass);
+                return RedirectToAction("Error", "Home", new { Message = ex.Message });
             }
-
-            StatusShipment ss = new StatusShipment
-            {
-                ShipmentId = shipment.ShipmentId,
-                StatusId = unitOfWork.Status.GetByName("Scheduled").StatusId,
-                StatusTime = DateTime.Now
-            };
-
-            unitOfWork.StatusShipment.Add(ss);
-            unitOfWork.Commit();
-
-            return RedirectToAction("CustomerShipments");
         }
 
         /// <summary>
@@ -250,20 +287,28 @@ namespace DeliveryServiceApp.Controllers
         /// <param name="additionalServiceId">Id objekta klase AdditionalService</param>
         /// <param name="number">Redni broj reda u tabeli</param>
         /// <returns>Razor stranica</returns>
+        /// <exception cref="Exception"></exception>
         [Authorize(Roles = "Customer")]
         public IActionResult AddService(int additionalServiceId, int number)
         {
-            AdditionalService service = unitOfWork.AdditionalService.FindByID(additionalServiceId);
-
-            AdditonalServiceViewModel model = new AdditonalServiceViewModel
+            try
             {
-                AdditionalServiceId = service.AdditionalServiceId,
-                AddtionalServiceName = service.AdditionalServiceName,
-                AdditonalServicePrice = service.AdditionalServicePrice,
-                Sn = number
-            };
+                AdditionalService service = serviceAdditonalService.FindByID(additionalServiceId);
 
-            return PartialView(model);
+                AdditonalServiceViewModel model = new AdditonalServiceViewModel
+                {
+                    AdditionalServiceId = service.AdditionalServiceId,
+                    AddtionalServiceName = service.AdditionalServiceName,
+                    AdditonalServicePrice = service.AdditionalServicePrice,
+                    Sn = number
+                };
+
+                return PartialView(model);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Home", new { Message = ex.Message });
+            }
         }
 
         /// <summary>
@@ -283,15 +328,22 @@ namespace DeliveryServiceApp.Controllers
         ///<para>
         /// </remarks>
         /// <returns>Razor stranica</returns>
+        /// <exception cref="Exception"></exception>
         [Authorize(Roles = "Customer")]
         public IActionResult CustomerShipments()
         {
-            int userId = -1;
-            int.TryParse(userManager.GetUserId(HttpContext.User), out userId);
+            try
+            {
+                var userId = int.Parse(userManager.GetUserId(HttpContext.User));
 
-            List<Shipment> model = unitOfWork.Shipment.GetAllOfSpecifiedUser(userId);
+                List<Shipment> model = serviceShipment.GetAllOfSpecifiedUser(userId);
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Home", new { Message = ex.Message });
+            }
         }
 
         /// <summary>
@@ -308,7 +360,7 @@ namespace DeliveryServiceApp.Controllers
         [Authorize(Roles = "Deliverer")]
         public IActionResult AllShipments()
         {
-            List<Shipment> model = unitOfWork.Shipment.GetAll();
+            List<Shipment> model = serviceShipment.GetAll();
 
             return View(model);
         }
@@ -362,32 +414,40 @@ namespace DeliveryServiceApp.Controllers
         ///     </para>
         /// </remarks>
         /// <param name="model">Model <seealso cref="ShipmentMonitoringViewModel"/> koji sadrzi jedinstveni kod posiljke unet od strane korisnika sistema</param>
+        /// <exception cref="Exception"></exception>
         [HttpPost]
         public IActionResult ShipmentMonitoring(ShipmentMonitoringViewModel model)
         {
-            Shipment shipment = unitOfWork.Shipment.FindByCode(model.ShipmentCode);
-
-            if(shipment == null)
+            try
             {
-                ModelState.AddModelError(string.Empty, "The shipment code you entered does not exist. Please check your code and try again.");
-                return View("ShipmentMonitoring");
-            }
+                Shipment shipment = serviceShipment.FindByCode(model.ShipmentCode);
 
-            List<StatusShipment> statusShipmentList = unitOfWork.StatusShipment.GetAllByShipmentId(shipment.ShipmentId);
-
-            List<Status> statusesList = unitOfWork.Status.GetAll();
-
-            foreach (StatusShipment ss in statusShipmentList)
-            {
-                StatusShipmentViewModel ssvm = new StatusShipmentViewModel
+                if (shipment == null)
                 {
-                    StatusName = statusesList.Find(sl => sl.StatusId == ss.StatusId).StatusName,
-                    StatusTime = ss.StatusTime
-                };
-                model.ShipmentStatuses.Add(ssvm);
-            }
+                    ModelState.AddModelError(string.Empty, "The shipment code you entered does not exist. Please check your code and try again.");
+                    return View("ShipmentMonitoring");
+                }
 
-            return View("ShipmentStatuses", model);
+                List<StatusShipment> statusShipmentList = serviceStatusShipment.GetAllByShipmentId(shipment.ShipmentId);
+
+                List<Status> statusesList = serviceStatus.GetAll();
+
+                foreach (StatusShipment ss in statusShipmentList)
+                {
+                    StatusShipmentViewModel ssvm = new StatusShipmentViewModel
+                    {
+                        StatusName = statusesList.Find(sl => sl.StatusId == ss.StatusId).StatusName,
+                        StatusTime = ss.StatusTime
+                    };
+                    model.ShipmentStatuses.Add(ssvm);
+                }
+
+                return View("ShipmentStatuses", model);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Home", new { Message = ex.Message });
+            }
         }
 
         /// <summary>
@@ -403,32 +463,41 @@ namespace DeliveryServiceApp.Controllers
         /// </remarks>
         /// <param name="id">Id posiljke ciji status zelimo da menjamo</param>
         /// <returns>Razor stranica</returns>
+        /// <exception cref="Exception"></exception>
         [Authorize(Roles = "Deliverer")]
         public IActionResult EditStatus(int id)
         {
-            Shipment shipment = unitOfWork.Shipment.FindByID(id);
-
-            List<StatusShipment> statusShipmentList = unitOfWork.StatusShipment.GetAllByShipmentId(shipment.ShipmentId);
-            List<Status> statusesList = unitOfWork.Status.GetAll();
-            List<SelectListItem> statusesSelectList = statusesList.Select(s => new SelectListItem { Text = s.StatusName, Value = s.StatusId.ToString() }).ToList();
-
-            ShipmentMonitoringViewModel model = new ShipmentMonitoringViewModel
+            try
             {
-                ShipmentCode = shipment.ShipmentCode,
-                StatusesSelect = statusesSelectList
-            };
+                Shipment shipment = serviceShipment.FindByID(id);
 
-            foreach (StatusShipment ss in statusShipmentList)
-            {
-                StatusShipmentViewModel ssvm = new StatusShipmentViewModel
+                List<StatusShipment> statusShipmentList = serviceStatusShipment.GetAllByShipmentId(shipment.ShipmentId);
+                List<Status> statusesList = serviceStatus.GetAll();
+                List<SelectListItem> statusesSelectList = statusesList.Select(s => new SelectListItem { Text = s.StatusName, Value = s.StatusId.ToString() }).ToList();
+
+                ShipmentMonitoringViewModel model = new ShipmentMonitoringViewModel
                 {
-                    StatusName = statusesList.Find(sl => sl.StatusId == ss.StatusId).StatusName,
-                    StatusTime = ss.StatusTime
+                    ShipmentCode = shipment.ShipmentCode,
+                    StatusesSelect = statusesSelectList
                 };
-                model.ShipmentStatuses.Add(ssvm);
-            }
 
-            return View(model);
+                foreach (StatusShipment ss in statusShipmentList)
+                {
+                    StatusShipmentViewModel ssvm = new StatusShipmentViewModel
+                    {
+                        StatusName = statusesList.Find(sl => sl.StatusId == ss.StatusId).StatusName,
+                        StatusTime = ss.StatusTime
+                    };
+                    model.ShipmentStatuses.Add(ssvm);
+                }
+
+                return View(model);
+
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Home", new { Message = ex.Message });
+            }
         }
 
         /// <summary>
@@ -438,19 +507,55 @@ namespace DeliveryServiceApp.Controllers
         /// <param name="id">Id posiljke ciji se status menja</param>
         /// <param name="model"><seealso cref="ShipmentMonitoringViewModel"/> model koji sadrzi podatke o dodatom statusu</param>
         /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         [HttpPost]
         public IActionResult EditStatus(int id, ShipmentMonitoringViewModel model)
         {
-            unitOfWork.StatusShipment.Add(new StatusShipment
+            try
             {
-                ShipmentId = id,
-                StatusId = model.StatusId,
-                StatusTime = DateTime.Now
-            });
+                Shipment shipment = serviceShipment.FindByID(id);
+                List<StatusShipment> statusShipmentList = serviceStatusShipment.GetAllByShipmentId(shipment.ShipmentId);
 
-            unitOfWork.Commit();
+                if (statusShipmentList.Any(ss => ss.StatusId == model.StatusId))
+                {
+                    ModelState.AddModelError(string.Empty, "You cannot add a status that is already in the shipment status list.");
 
-            return RedirectToAction("AllShipments");
+                    List<Status> statusesList = serviceStatus.GetAll();
+                    List<SelectListItem> statusesSelectList = statusesList.Select(s => new SelectListItem { Text = s.StatusName, Value = s.StatusId.ToString() }).ToList();
+
+                    ShipmentMonitoringViewModel m = new ShipmentMonitoringViewModel
+                    {
+                        ShipmentCode = shipment.ShipmentCode,
+                        StatusesSelect = statusesSelectList
+                    };
+
+                    foreach (StatusShipment ss in statusShipmentList)
+                    {
+                        StatusShipmentViewModel ssvm = new StatusShipmentViewModel
+                        {
+                            StatusName = statusesList.Find(sl => sl.StatusId == ss.StatusId).StatusName,
+                            StatusTime = ss.StatusTime
+                        };
+                        m.ShipmentStatuses.Add(ssvm);
+                    }
+
+                    return View(m);
+                }
+
+                serviceStatusShipment.Add(new StatusShipment
+                {
+                    ShipmentId = id,
+                    StatusId = model.StatusId,
+                    StatusTime = DateTime.Now
+                });
+
+
+                return RedirectToAction("EditStatus");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Home", new { Message = ex.Message });
+            }
         }
     }   
 }
