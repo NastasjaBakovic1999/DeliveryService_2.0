@@ -1012,6 +1012,14 @@ namespace DeliveryServiceDomain
             Price = price;
         }
 
+        /// <summary>
+        ///     Funkcija koja predstavlja override funkcije ToString
+        /// </summary>
+        /// <remarks>   
+        ///     Vraca string vrednost koja sadrzi podatke o objektu <br />
+        ///     klase Shipment
+        /// </remarks>
+        /// <returns>String sa podacima o posiljci</returns>
         public override string ToString()
         {
             return $"Shipment with {ShipmentCode} code";

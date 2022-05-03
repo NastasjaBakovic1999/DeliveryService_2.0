@@ -181,11 +181,30 @@ namespace DeliveryServiceDomain
             Shipment = shipment;
         }
 
+        /// <summary>
+        ///     Funkcija koja predstavlja override funkcije ToString
+        /// </summary>
+        /// <remarks>   
+        ///     Vraca string vrednost koja sadrzi podatke o agregaciji <br />
+        ///     dodatne usluge i posiljke
+        /// </remarks>
+        /// <returns>String sa podacima o objektu AdditionalServiceShipment</returns>
         public override string ToString()
         {
-            return $"{Shipment.ToString()} has {AdditionalService.AdditionalServiceName} additional service";
+            return $"{Shipment} has {AdditionalService.AdditionalServiceName} additional service";
         }
 
+        /// <summary>
+        ///     Funkcija koja predstavlja override funkcije Equals
+        /// </summary>
+        /// <remarks>
+        ///     Funkcija koja poredi dva objekta klase AdditionalServiceShipment <br />
+        ///     i prema definisanim pravilima jednakosti odredjuje da li su ti objekti <br/>
+        ///     jednaki (isti) ili ne.
+        /// </remarks>
+        /// <param name="obj">Objekat klase AdditionalServiceShipment koji se <br />
+        /// poredi sa drugim objektom iste klase</param>
+        /// <returns>Boolean vrednost - ukoliko su objekti jednaki true, u suprotnom false.</returns>
         public override bool Equals(object obj)
         {
             return obj is AdditionalServiceShipment shipment &&
@@ -195,6 +214,13 @@ namespace DeliveryServiceDomain
                    EqualityComparer<Shipment>.Default.Equals(Shipment, shipment.Shipment);
         }
 
+        /// <summary>
+        ///     Funkcija koja predstavlja override funkcije GetHashCode
+        /// </summary>
+        /// <remarks>
+        ///     Definise nacin na koji kreiramo jedinstveni hash kod objekta 
+        /// </remarks>
+        /// <returns>Objekat klase HashCode koji je jedinstveni identifikator objekta</returns>
         public override int GetHashCode()
         {
             return HashCode.Combine(AdditionalServiceId, AdditionalService, ShipmentId, Shipment);

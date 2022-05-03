@@ -70,6 +70,14 @@ namespace DeliveryServiceDomain
             DateOfEmployment = doe;
         }
 
+        /// <summary>
+        ///     Funkcija koja predstavlja override funkcije ToString
+        /// </summary>
+        /// <remarks>   
+        ///     Vraca string vrednost koja sadrzi podatke o objektu <br />
+        ///     klase Deliverer
+        /// </remarks>
+        /// <returns>String sa podacima o isporuciocu</returns>
         public override string ToString()
         {
             return $"Deliverer: {FirstName} {LastName}";

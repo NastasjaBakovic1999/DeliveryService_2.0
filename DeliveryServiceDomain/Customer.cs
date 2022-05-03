@@ -124,6 +124,14 @@ namespace DeliveryServiceDomain
             PostalCode = postalCode;
         }
 
+        /// <summary>
+        ///     Funkcija koja predstavlja override funkcije ToString
+        /// </summary>
+        /// <remarks>   
+        ///     Vraca string vrednost koja sadrzi podatke o objektu <br />
+        ///     klase Customer
+        /// </remarks>
+        /// <returns>String sa podacima o kupcu</returns>
         public override string ToString()
         {
             return $"Customer: {FirstName} {LastName}";
