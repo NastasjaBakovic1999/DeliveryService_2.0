@@ -19,37 +19,43 @@ namespace DeliveryServiceData.Implementation
 
         public void Add(AdditionalServiceShipment additionalServiceShipment)
         {
-            context.AdditionalServiceShipments.Add(additionalServiceShipment);
-        }
-
-        public void Delete(AdditionalServiceShipment additionalServiceShipment)
-        {
-            context.AdditionalServiceShipments.Remove(additionalServiceShipment);
+            try
+            {
+                context.AdditionalServiceShipments.Add(additionalServiceShipment);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error saving shipment and its additional services! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public AdditionalServiceShipment FindByID(int id, params int[] ids)
         {
-            return context.AdditionalServiceShipments.Find(id, ids[0]);
+            try
+            {
+                return context.AdditionalServiceShipments.Find(id, ids[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading shipment and its additional service! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public List<AdditionalServiceShipment> GetAll()
         {
-            return context.AdditionalServiceShipments.ToList();
+            try
+            {
+                return context.AdditionalServiceShipments.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error returning all shipments and their additional services! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
-        public void Edit(AdditionalServiceShipment additionalServiceShipment)
-        {
-            context.AdditionalServiceShipments.Update(additionalServiceShipment);
-        }
 
-        public List<AdditionalServiceShipment> GetByShipmentId(int shipmentId)
-        {
-            return context.AdditionalServiceShipments.Where(ass => ass.ShipmentId == shipmentId).ToList();
-        }
-
-        public List<AdditionalServiceShipment> Search(Expression<Func<AdditionalServiceShipment, bool>> pred)
-        {
-            return context.AdditionalServiceShipments.Where(pred).ToList();
-        }
     }
 }

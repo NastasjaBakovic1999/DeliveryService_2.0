@@ -16,24 +16,30 @@ namespace DeliveryServiceData.Implementation
             this.context = context;
         }
 
-        public void Add(AdditionalService additionalService)
-        {
-            context.AdditionalServices.Add(additionalService);
-        }
-
-        public void Delete(AdditionalService additionalService)
-        {
-            context.AdditionalServices.Remove(additionalService);
-        }
-
         public AdditionalService FindByID(int id, params int[] ids)
         {
-            return context.AdditionalServices.Find(id);
+            try
+            {
+                return context.AdditionalServices.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading additional service! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
 
         public List<AdditionalService> GetAll()
         {
-            return context.AdditionalServices.ToList();
+            try
+            {
+                return context.AdditionalServices.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error returning all additional services! {Environment.NewLine}" +
+                                    $"System Error: {ex.Message}");
+            }
         }
     }
 }
